@@ -36,18 +36,6 @@ http://localhost:5173
 npm run build
 ```
 
-## Environment Variables
-
-This project supports a configurable WhatsApp number through environment variables.
-
-Create a local `.env` file:
-
-```env
-VITE_WHATSAPP_NUMBER=917067038682
-```
-
-An example file is included as `.env.example`.
-
 ## Git Notes
 
 - `.env` is ignored by Git
