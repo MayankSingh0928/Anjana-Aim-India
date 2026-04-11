@@ -13,7 +13,7 @@ export function FloatingActions() {
   return (
     <>
       <a
-        href="https://wa.me/916232952202?text=Hello%20Anjana%20Aim%20India%20Company,%20I%20want%20to%20know%20more%20about%20your%20services."
+        href="https://wa.me/917067038682?text=Hello%20Anjana%20Aim%20India%20Company,%20I%20want%20to%20know%20more%20about%20your%20services."
         target="_blank"
         rel="noreferrer"
         className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-emerald-500/30 transition hover:-translate-y-1 hover:scale-105"
