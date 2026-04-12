@@ -1,0 +1,18 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="42" fill="#F4EFE6"/>
+  <path d="M0 522C136 470 272 466 408 510C544 554 680 558 816 510C952 462 1088 462 1200 490V760H0V522Z" fill="#D8C0A0"/>
+  <path d="M0 584C136 536 272 534 408 574C544 614 680 618 816 576C952 534 1088 534 1200 560V760H0V584Z" fill="#B98D61"/>
+  <rect x="212" y="210" width="330" height="228" rx="22" fill="#FFFFFF"/>
+  <rect x="242" y="242" width="270" height="164" rx="12" fill="#E8EDF5"/>
+  <path d="M286 334 346 278 408 322 470 286" stroke="#0D1B2A" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="286" cy="334" r="14" fill="#F59E0B"/>
+  <circle cx="346" cy="278" r="14" fill="#F59E0B"/>
+  <circle cx="408" cy="322" r="14" fill="#F59E0B"/>
+  <circle cx="470" cy="286" r="14" fill="#F59E0B"/>
+  <rect x="680" y="170" width="286" height="360" rx="28" fill="#0D1B2A"/>
+  <rect x="714" y="214" width="218" height="72" rx="16" fill="#FFFFFF"/>
+  <text x="752" y="258" fill="#0D1B2A" font-family="Arial, sans-serif" font-size="24" font-weight="700">ANJANA AIM</text>
+  <text x="760" y="306" fill="#F8FAFC" font-family="Arial, sans-serif" font-size="24" font-weight="700">LAND DEVELOPMENT</text>
+  <text x="760" y="344" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="18">Planning • Advisory • Support</text>
+  <text x="100" y="110" fill="#0D1B2A" font-family="Arial, sans-serif" font-size="38" font-weight="700">ANJANA AIM INDIA COMPANY</text>
+</svg>

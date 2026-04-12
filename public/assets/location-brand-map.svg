@@ -1,0 +1,12 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" rx="40" fill="#EFF4FB"/>
+  <path d="M0 80H1200M0 200H1200M0 320H1200M0 440H1200M0 560H1200M150 0V760M330 0V760M510 0V760M690 0V760M870 0V760M1050 0V760" stroke="#C9D5E5" stroke-width="2"/>
+  <path d="M180 520C320 420 430 386 584 406C718 424 836 374 1014 248" stroke="#D68A1F" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="584" cy="406" r="34" fill="#FFFFFF"/>
+  <circle cx="584" cy="406" r="18" fill="#D68A1F"/>
+  <path d="M584 348C548 348 520 376 520 412C520 462 584 528 584 528C584 528 648 462 648 412C648 376 620 348 584 348Z" fill="#0D1B2A" fill-opacity="0.12"/>
+  <rect x="652" y="316" width="356" height="164" rx="26" fill="#FFFFFF"/>
+  <text x="688" y="372" fill="#0D1B2A" font-family="Arial, sans-serif" font-size="30" font-weight="700">ANJANA AIM INDIA COMPANY</text>
+  <text x="688" y="412" fill="#475569" font-family="Arial, sans-serif" font-size="20">Nahargarh Road, Maliya Kherkheda,</text>
+  <text x="688" y="442" fill="#475569" font-family="Arial, sans-serif" font-size="20">Mandsaur, Madhya Pradesh 458895</text>
+</svg>
