@@ -180,8 +180,28 @@ export const infrastructureStats = [
 ];
 
 export const coverageStats = [
-  { icon: "mp", title: "Madhya Pradesh", value: "33+ Projects" },
-  { icon: "cg", title: "Chhattisgarh", value: "22+ Projects" },
-  { icon: "mh", title: "Maharashtra", value: "12+ Projects" },
-  { icon: "india", title: "Pan India", value: "5+ Projects" },
+  {
+    title: "Madhya Pradesh",
+    value: "33+ Projects",
+    image: "/assets/state-madhya-pradesh.webp",
+    alt: "Madhya Pradesh coverage map",
+  },
+  {
+    title: "Chhattisgarh",
+    value: "22+ Projects",
+    image: "/assets/state-chhattisgarh.webp",
+    alt: "Chhattisgarh coverage map",
+  },
+  {
+    title: "Maharashtra",
+    value: "12+ Projects",
+    image: "/assets/state-maharashtra.webp",
+    alt: "Maharashtra coverage map",
+  },
+  {
+    title: "Pan India",
+    value: "5+ Projects",
+    image: "/assets/state-pan-india.webp",
+    alt: "Pan India coverage map",
+  },
 ];

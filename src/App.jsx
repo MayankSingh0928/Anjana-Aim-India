@@ -316,8 +316,12 @@ function HomePage({ onInquirySubmit }) {
             {coverageStats.map((item, index) => (
               <Reveal key={item.title} delay={index * 80}>
                 <article className="rounded-[1.9rem] border border-[#eadfce] bg-white/75 px-6 py-8 text-center shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
-                  <div className="mx-auto flex h-36 w-36 items-center justify-center rounded-full bg-[#f3e5d1] text-[#cfaa7d]">
-                    <Icon name={item.icon} className="h-24 w-24" />
+                  <div className="mx-auto flex h-40 w-full max-w-[220px] items-center justify-center">
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      className="max-h-40 w-auto object-contain"
+                    />
                   </div>
                   <h3 className="mt-8 font-heading text-2xl font-semibold text-[color:var(--primary)]">{item.title}</h3>
                   <p className="mt-4 text-lg font-medium text-slate-600">{item.value}</p>
