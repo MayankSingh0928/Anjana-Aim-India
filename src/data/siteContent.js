@@ -1,10 +1,17 @@
 export const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About Us", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Projects", href: "#projects" },
-  { label: "Why Choose Us", href: "#why-choose-us" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Services", href: "/#services" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Why Choose Us", href: "/#why-choose-us" },
+  {
+    label: "Contact",
+    href: "/#contact",
+    children: [
+      { label: "FAQ", href: "/#faq" },
+      { label: "Privacy Policy", href: "/#privacy-policy" },
+    ],
+  },
 ];
 
 export const stats = [
@@ -143,4 +150,38 @@ export const companyProfileDetails = [
   { label: "District", value: "Mandsaur" },
   { label: "State", value: "Madhya Pradesh" },
   { label: "Pincode", value: "458895" },
+];
+
+export const processSteps = [
+  {
+    step: "01",
+    title: "Identify Opportunities",
+    description:
+      "Explore premium land parcels for industrial, commercial, and renewable energy projects tailored to your specific growth goals.",
+  },
+  {
+    step: "02",
+    title: "Market Insight",
+    description:
+      "Leverage our expertise in identifying high-growth locations with strong investment potential and connectivity.",
+  },
+  {
+    step: "03",
+    title: "Due Diligence",
+    description:
+      "Benefit from comprehensive title verification and compliance management to ensure a secure acquisition.",
+  },
+];
+
+export const infrastructureStats = [
+  { value: "1200+", label: "Residential Works" },
+  { value: "600+", label: "Industrial Works" },
+  { value: "6+", label: "Construction Works" },
+];
+
+export const coverageStats = [
+  { icon: "mp", title: "Madhya Pradesh", value: "33+ Projects" },
+  { icon: "cg", title: "Chhattisgarh", value: "22+ Projects" },
+  { icon: "mh", title: "Maharashtra", value: "12+ Projects" },
+  { icon: "india", title: "Pan India", value: "5+ Projects" },
 ];

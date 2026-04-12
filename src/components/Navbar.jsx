@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { navLinks } from "../data/siteContent";
+import { Icon } from "./Icon";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 16);
@@ -40,9 +42,48 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className={linkClass}>
-              {link.label}
-            </a>
+            link.children ? (
+              <div
+                key={link.href}
+                className="relative"
+                onMouseEnter={() => setActiveDropdown(link.href)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button
+                  type="button"
+                  className={`${linkClass} inline-flex items-center gap-2`}
+                  aria-expanded={activeDropdown === link.href}
+                >
+                  <span>{link.label}</span>
+                  <Icon
+                    name="chevron"
+                    className={`h-4 w-4 transition ${activeDropdown === link.href ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                <div
+                  className={`absolute left-0 top-full mt-4 w-52 rounded-2xl border border-slate-200 bg-white p-3 shadow-[0_18px_40px_rgba(15,23,42,0.12)] transition-all duration-200 ${
+                    activeDropdown === link.href
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible translate-y-2 opacity-0"
+                  }`}
+                >
+                  {link.children.map((child) => (
+                    <a
+                      key={child.href}
+                      href={child.href}
+                      className="block rounded-xl px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-50 hover:text-[color:var(--accent)]"
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <a key={link.href} href={link.href} className={linkClass}>
+                {link.label}
+              </a>
+            )
           ))}
         </nav>
 
@@ -71,14 +112,29 @@ export function Navbar() {
         <nav className="border-t border-[color:var(--border)] bg-white px-4 py-4 shadow-xl shadow-slate-900/5 lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-4">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={linkClass}
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </a>
+              <div key={link.href} className="flex flex-col gap-2">
+                <a
+                  href={link.href}
+                  className={linkClass}
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </a>
+                {link.children ? (
+                  <div className="ml-4 rounded-2xl border border-slate-200 bg-slate-50 p-2">
+                    {link.children.map((child) => (
+                      <a
+                        key={child.href}
+                        href={child.href}
+                        className="block rounded-xl px-3 py-2 text-sm font-medium text-slate-600 transition hover:text-[color:var(--accent)]"
+                        onClick={() => setOpen(false)}
+                      >
+                        {child.label}
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
+              </div>
             ))}
             <a href="#contact" className="btn-primary mt-2 text-center" onClick={() => setOpen(false)}>
               Get in Touch
