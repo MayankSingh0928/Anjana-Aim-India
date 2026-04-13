@@ -26,7 +26,7 @@ export function Navbar() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="#home" className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           <img
             src="/assets/aim-logo.png"
             alt="Anjana Aim India Company logo"
@@ -88,7 +88,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden lg:block">
-          <a href="#contact" className="btn-primary">
+          <a href="/#contact" className="btn-primary">
             Get in Touch
           </a>
         </div>
@@ -136,7 +136,7 @@ export function Navbar() {
                 ) : null}
               </div>
             ))}
-            <a href="#contact" className="btn-primary mt-2 text-center" onClick={() => setOpen(false)}>
+            <a href="/#contact" className="btn-primary mt-2 text-center" onClick={() => setOpen(false)}>
               Get in Touch
             </a>
           </div>

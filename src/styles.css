@@ -149,6 +149,36 @@ a {
   box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.12);
 }
 
+.privacy-policy h2 {
+  margin-top: 2rem;
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.privacy-policy h3 {
+  margin-top: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.privacy-policy p,
+.privacy-policy li {
+  color: #475569;
+  font-size: 1rem;
+  line-height: 1.9;
+}
+
+.privacy-policy ul {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
 @media (max-width: 640px) {
   .section-shell {
     padding: 4rem 0;

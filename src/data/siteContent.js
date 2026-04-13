@@ -8,8 +8,8 @@ export const navLinks = [
     label: "Contact",
     href: "/#contact",
     children: [
-      { label: "FAQ", href: "/#faq" },
-      { label: "Privacy Policy", href: "/#privacy-policy" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
     ],
   },
 ];
