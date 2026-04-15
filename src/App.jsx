@@ -213,8 +213,8 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
               <div className="grid gap-8 md:grid-cols-[0.78fr_1.22fr] md:items-start">
                 <div className="overflow-hidden rounded-[2rem] border border-[#eadfce] bg-[#f5ecdf] shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
                   <img
-                    src="/assets/meeting room.webp"
-                    alt="Professional meeting room and office setup"
+                    src="/assets/windmill.webp"
+                    alt="Windmill project field and renewable energy infrastructure"
                     className="h-full w-full object-cover"
                   />
                 </div>
@@ -252,8 +252,8 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
           <Reveal delay={120}>
             <div className="overflow-hidden rounded-[2rem] border border-[#eadfce] bg-[#f8f1e6] shadow-[0_22px_60px_rgba(15,23,42,0.08)]">
               <img
-                src="/assets/office.webp"
-                alt="Premium infrastructure and building development showcase"
+                src="/assets/electricPole.webp"
+                alt="Electric transmission poles and power infrastructure field"
                 className="h-full w-full object-cover"
               />
             </div>

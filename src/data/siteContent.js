@@ -58,6 +58,13 @@ export const services = [
       "Renewable energy support and implementation for solar infrastructure projects.",
   },
   {
+    icon: "electric",
+    slug: "electric-pole",
+    title: "Electric Pole",
+    description:
+      "Electric pole, transmission, and power infrastructure support for project-ready utility works.",
+  },
+  {
     icon: "labor",
     slug: "labor-contractor",
     title: "Labor Contractor",
@@ -212,6 +219,36 @@ export const serviceDetails = [
       "Commercial renewable project support",
     ],
     process: ["Project requirement", "Site support", "Implementation assistance", "Operational handoff"],
+  },
+  {
+    slug: "electric-pole",
+    icon: "electric",
+    title: "Electric Pole",
+    eyebrow: "Power Infrastructure Support",
+    summary:
+      "Electric pole and transmission infrastructure support for utility-aligned projects, including site coordination, manpower assistance, field readiness, and practical execution support for power connectivity needs.",
+    heroImage: "/assets/pole.webp",
+    heroImageAlt: "Electric transmission towers and high-voltage power lines",
+    heroLabel: "Power Infrastructure Visual",
+    heroTitle: "Electric Pole & Transmission Support",
+    detailShowcase: {
+      title: "Electric Pole & Utility Field Coordination",
+      summary:
+        "We support electric pole and power infrastructure work with field coordination, workforce alignment, route readiness, and project execution assistance. Our approach helps contractors and stakeholders keep utility-related site work organized, practical, and ready for dependable delivery.",
+      cta: "Plan Utility Work",
+      image: "/assets/electricPole.webp",
+      imageAlt: "Electric transmission tower and power lines over agricultural land",
+      featureImage: "/assets/windmill.webp",
+      featureAlt: "Renewable energy field with wind turbines and utility infrastructure",
+    },
+    capabilitiesBackground: "/assets/pole.webp",
+    highlights: [
+      "Electric pole site support",
+      "Transmission route coordination",
+      "Utility infrastructure readiness",
+      "Manpower and field execution assistance",
+    ],
+    process: ["Route requirement", "Site readiness", "Field coordination", "Execution support"],
   },
   {
     slug: "labor-contractor",
