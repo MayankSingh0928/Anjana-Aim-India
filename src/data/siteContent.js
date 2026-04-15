@@ -24,39 +24,163 @@ export const stats = [
 export const services = [
   {
     icon: "construction",
+    slug: "construction",
     title: "Construction",
     description:
       "End-to-end construction solutions for commercial, industrial, and development projects.",
   },
   {
     icon: "steel",
+    slug: "rod-supply",
     title: "Rod Supply",
     description:
       "Reliable rod and steel material supply for structural and infrastructure needs.",
   },
   {
     icon: "land",
+    slug: "land-development",
     title: "Land Development",
     description:
       "Professional land preparation and development solutions for future-ready projects.",
   },
   {
     icon: "wind",
+    slug: "wind-project",
     title: "Wind Project",
     description:
       "Support services and project execution assistance for wind energy development.",
   },
   {
     icon: "solar",
+    slug: "solar-project",
     title: "Solar Project",
     description:
       "Renewable energy support and implementation for solar infrastructure projects.",
   },
   {
     icon: "labor",
+    slug: "labor-contractor",
     title: "Labor Contractor",
     description:
       "Skilled and dependable workforce solutions for industrial and project requirements.",
+  },
+];
+
+export const serviceDetails = [
+  {
+    slug: "construction",
+    icon: "construction",
+    title: "Construction",
+    eyebrow: "Commercial & Infrastructure Execution",
+    summary:
+      "End-to-end construction solutions for commercial, industrial, and development projects with dependable planning, site coordination, and execution support.",
+    detailShowcase: {
+      title: "Construction & Industrial Project Support",
+      summary:
+        "We provide dependable construction support for commercial, industrial, and infrastructure projects, from planning coordination to on-site execution. Our team helps align project requirements, skilled manpower, materials, and supervision so every stage moves with clarity, discipline, and practical accountability.",
+      cta: "More Plans",
+      image: "/assets/construction1.webp",
+      imageAlt: "Industrial construction supervisor reviewing plant infrastructure at night",
+      featureImage: "/assets/construction.webp",
+      featureAlt: "Construction helmet and project drawings overlooking an urban development site",
+    },
+    highlights: [
+      "Commercial and industrial construction support",
+      "Project planning and site coordination",
+      "Material and workforce alignment",
+      "Quality-focused execution practices",
+    ],
+    process: ["Requirement review", "Resource planning", "Execution support", "Progress coordination"],
+  },
+  {
+    slug: "rod-supply",
+    icon: "steel",
+    title: "Rod Supply",
+    eyebrow: "Steel & Structural Material Support",
+    summary:
+      "Reliable rod and steel material supply for structural and infrastructure needs, helping projects maintain quality, availability, and delivery continuity.",
+    highlights: [
+      "Rod and steel material sourcing",
+      "Supply support for structural works",
+      "Project-based quantity coordination",
+      "Reliable vendor and delivery management",
+    ],
+    process: ["Material requirement", "Quantity planning", "Supply coordination", "Delivery support"],
+  },
+  {
+    slug: "land-development",
+    icon: "land",
+    title: "Land Development",
+    eyebrow: "Property Preparation & Development",
+    summary:
+      "Professional land preparation and development solutions for future-ready commercial, industrial, renewable energy, and infrastructure projects.",
+    highlights: [
+      "Land preparation and development support",
+      "Site readiness coordination",
+      "Infrastructure-focused planning assistance",
+      "Support for future project usability",
+    ],
+    process: ["Site assessment", "Development planning", "Ground preparation", "Project readiness"],
+  },
+  {
+    slug: "wind-project",
+    icon: "wind",
+    title: "Wind Project",
+    eyebrow: "Renewable Energy Support",
+    summary:
+      "Support services and project execution assistance for wind energy development, including site coordination and infrastructure support requirements.",
+    media: {
+      image: "/assets/wind-project-showcase.webp",
+      video: "/assets/wind-project-site-video.mp4",
+      alt: "Wind and solar renewable energy project site",
+    },
+    detailShowcase: {
+      title: "Renewable Energy Land Support",
+      summary:
+        "We provide expert land facilitation and site identification for large-scale wind and renewable power projects. Our team leverages deep industry experience to coordinate with project stakeholders and secure strategic land parcels that drive sustainable growth.",
+      cta: "More Plans",
+      image: "/assets/feild.webp",
+      imageAlt: "Field engineer surveying renewable energy land with wind turbines and transmission infrastructure",
+      featureImage: "/assets/wind-project-showcase.webp",
+      featureAlt: "Wind and solar renewable energy project facility",
+    },
+    highlights: [
+      "Wind energy project support",
+      "Land and site coordination assistance",
+      "Workforce and execution support",
+      "Infrastructure readiness assistance",
+    ],
+    process: ["Site requirement", "Coordination planning", "Execution assistance", "Progress support"],
+  },
+  {
+    slug: "solar-project",
+    icon: "solar",
+    title: "Solar Project",
+    eyebrow: "Solar Infrastructure Implementation",
+    summary:
+      "Renewable energy support and implementation assistance for solar infrastructure projects requiring land, manpower, and execution coordination.",
+    highlights: [
+      "Solar project support services",
+      "Land and infrastructure coordination",
+      "Execution and manpower assistance",
+      "Commercial renewable project support",
+    ],
+    process: ["Project requirement", "Site support", "Implementation assistance", "Operational handoff"],
+  },
+  {
+    slug: "labor-contractor",
+    icon: "labor",
+    title: "Labor Contractor",
+    eyebrow: "Skilled Workforce Solutions",
+    summary:
+      "Skilled and dependable workforce solutions for industrial, construction, infrastructure, and project-based requirements.",
+    highlights: [
+      "Skilled and semi-skilled labor support",
+      "Industrial and site workforce coordination",
+      "Project-based manpower availability",
+      "Reliable resource management",
+    ],
+    process: ["Manpower requirement", "Team planning", "Deployment support", "Ongoing coordination"],
   },
 ];
 
@@ -128,8 +252,8 @@ export const contactInfo = [
   },
   {
     label: "Email",
-    value: "info@anjanaaimindia.com",
-    href: "mailto:info@anjanaaimindia.com",
+    value: "info@anjanaaim.in",
+    href: "mailto:info@anjanaaim.in",
   },
   {
     label: "Address",

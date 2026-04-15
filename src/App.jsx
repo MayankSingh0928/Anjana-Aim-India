@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Footer } from "./components/Footer";
 import { FloatingActions } from "./components/FloatingActions";
 import { AboutSection } from "./components/AboutSection";
@@ -11,6 +12,7 @@ import {
   infrastructureStats,
   processSteps,
   projects,
+  serviceDetails,
   services,
   whyChooseUs,
 } from "./data/siteContent";
@@ -48,7 +50,27 @@ const faqItems = [
   },
 ];
 
-function HomePage({ onInquirySubmit }) {
+function getContactHref(serviceSlug) {
+  return `/?service=${encodeURIComponent(serviceSlug)}#contact`;
+}
+
+function getServiceTitleFromSlug(serviceSlug) {
+  return services.find((service) => service.slug === serviceSlug)?.title || services[0].title;
+}
+
+function HomePage({ onInquirySubmit, selectedServiceSlug }) {
+  const selectedServiceTitle = getServiceTitleFromSlug(selectedServiceSlug);
+
+  useEffect(() => {
+    if (window.location.hash !== "#contact") {
+      return;
+    }
+
+    window.setTimeout(() => {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 0);
+  }, []);
+
   return (
     <main>
       <section id="home" className="relative overflow-hidden">
@@ -188,7 +210,7 @@ function HomePage({ onInquirySubmit }) {
               <div className="grid gap-8 md:grid-cols-[0.78fr_1.22fr] md:items-start">
                 <div className="overflow-hidden rounded-[2rem] border border-[#eadfce] bg-[#f5ecdf] shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
                   <img
-                    src="/assets/meeting-room-showcase.svg"
+                    src="/assets/meeting room.webp"
                     alt="Professional meeting room and office setup"
                     className="h-full w-full object-cover"
                   />
@@ -227,7 +249,7 @@ function HomePage({ onInquirySubmit }) {
           <Reveal delay={120}>
             <div className="overflow-hidden rounded-[2rem] border border-[#eadfce] bg-[#f8f1e6] shadow-[0_22px_60px_rgba(15,23,42,0.08)]">
               <img
-                src="/assets/premium-building-showcase.svg"
+                src="/assets/office.webp"
                 alt="Premium infrastructure and building development showcase"
                 className="h-full w-full object-cover"
               />
@@ -256,10 +278,13 @@ function HomePage({ onInquirySubmit }) {
                   </div>
                   <h3 className="mt-6 font-heading text-2xl font-semibold text-[color:var(--primary)]">{service.title}</h3>
                   <p className="mt-4 text-base leading-7 text-slate-600">{service.description}</p>
-                  <div className="mt-6 flex items-center gap-2 text-sm font-semibold text-[color:var(--accent)]">
+                  <a
+                    href={`/services/${service.slug}`}
+                    className="mt-6 flex items-center gap-2 text-sm font-semibold text-[color:var(--accent)] transition hover:gap-3"
+                  >
                     <span>Business-ready support</span>
                     <Icon name="arrow" className="h-4 w-4" />
-                  </div>
+                  </a>
                 </article>
               </Reveal>
             ))}
@@ -389,7 +414,7 @@ function HomePage({ onInquirySubmit }) {
         </Reveal>
       </section>
 
-      <section id="contact" className="section-shell pt-10">
+      <section id="contact" className="section-shell scroll-mt-24 pt-10">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <Reveal>
             <SectionIntro
@@ -472,13 +497,12 @@ function HomePage({ onInquirySubmit }) {
                 </label>
                 <label className="form-field">
                   <span>Service Required</span>
-                  <select name="service">
-                    <option>Construction</option>
-                    <option>Rod Supply</option>
-                    <option>Land Development</option>
-                    <option>Wind Project</option>
-                    <option>Solar Project</option>
-                    <option>Labor Contractor</option>
+                  <select name="service" defaultValue={selectedServiceTitle}>
+                    {services.map((service) => (
+                      <option key={service.slug} value={service.title}>
+                        {service.title}
+                      </option>
+                    ))}
                   </select>
                 </label>
                 <label className="form-field sm:col-span-2">
@@ -861,12 +885,303 @@ function PrivacyPolicyPage() {
   );
 }
 
+function ServiceDetailPage({ service }) {
+  if (!service) {
+    return (
+      <main>
+        <section className="section-shell">
+          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+            <span className="inline-flex rounded-full border border-[#eadfce] bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)]">
+              Service Not Found
+            </span>
+            <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-[color:var(--primary)]">
+              The requested service page could not be found.
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600">
+              Please return to the services section and choose one of our available business support services.
+            </p>
+            <a href="/#services" className="btn-primary mt-8">
+              View Services
+            </a>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  const detailShowcase = service.detailShowcase;
+  const contactHref = getContactHref(service.slug);
+
+  return (
+    <main>
+      <section className="relative overflow-hidden border-b border-[color:var(--border)] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(244,239,230,0.75))]">
+        <div className="hero-grid absolute inset-0 opacity-10" aria-hidden="true" />
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:px-8 lg:py-24">
+          <Reveal>
+            <span className="inline-flex rounded-full border border-[#eadfce] bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)]">
+              {service.eyebrow}
+            </span>
+            <h1 className="mt-6 font-heading text-5xl font-semibold tracking-tight text-[color:var(--primary)] sm:text-6xl">
+              {service.title}
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{service.summary}</p>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <a href={contactHref} className="btn-primary">
+                Start Inquiry
+              </a>
+              <a href="/#services" className="btn-secondary">
+                Back to Services
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div className="overflow-hidden rounded-[2rem] border border-white/70 bg-white/85 p-4 shadow-[0_24px_70px_rgba(15,23,42,0.1)] backdrop-blur-xl sm:p-6">
+              {service.media ? (
+                <div className="relative overflow-hidden rounded-[1.5rem]">
+                  <img
+                    src={service.media.image}
+                    alt={service.media.alt}
+                    className="h-80 w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.04),rgba(15,23,42,0.55))]" />
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <span className="inline-flex rounded-full bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--accent)]">
+                      Renewable Site Visual
+                    </span>
+                    <h2 className="mt-3 font-heading text-3xl font-semibold text-white">
+                      Wind & Solar Infrastructure Support
+                    </h2>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-slate-950 text-white shadow-lg shadow-slate-900/10">
+                    <Icon name={service.icon} className="h-9 w-9" />
+                  </div>
+                  <h2 className="mt-8 font-heading text-3xl font-semibold text-[color:var(--primary)]">
+                    Business-ready {service.title.toLowerCase()} support
+                  </h2>
+                  <p className="mt-4 text-base leading-8 text-slate-600">
+                    Our approach is practical, coordinated, and built around project needs so clients receive dependable
+                    service support from planning to execution.
+                  </p>
+                </>
+              )}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {detailShowcase ? (
+        <section className="section-shell bg-white">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start lg:px-8">
+            <Reveal>
+              <div className="max-w-3xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-[color:var(--primary)]">
+                  {detailShowcase.title}
+                </p>
+                <p className="mt-7 text-base leading-8 text-slate-600 sm:text-lg">
+                  {detailShowcase.summary}
+                </p>
+                <a href={contactHref} className="btn-primary mt-10">
+                  {detailShowcase.cta}
+                </a>
+              </div>
+
+              <div className="mt-8 overflow-hidden border border-[#eadfce] bg-[#f5ecdf] shadow-[0_18px_50px_rgba(15,23,42,0.05)]">
+                <img
+                  src={detailShowcase.image}
+                  alt={detailShowcase.imageAlt}
+                  className="h-64 w-full object-cover sm:h-72"
+                />
+              </div>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <div className="overflow-hidden border border-[#eadfce] bg-[#f8f1e6] shadow-[0_22px_60px_rgba(15,23,42,0.08)]">
+                <img
+                  src={detailShowcase.featureImage}
+                  alt={detailShowcase.featureAlt}
+                  className="h-[28rem] w-full object-cover lg:h-[33rem]"
+                />
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
+      {service.media ? (
+        <section className="section-shell">
+          <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
+            <Reveal>
+              <SectionIntro
+                eyebrow="Project Media"
+                title="On-ground wind project capability, presented with clarity"
+                description="A visual overview of renewable energy infrastructure support, styled to match the professional presentation of Anjana Aim India Company."
+              />
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {["Wind site coordination", "Solar-adjacent infrastructure", "Execution support", "Renewable project readiness"].map((item) => (
+                  <div key={item} className="rounded-2xl border border-[color:var(--border)] bg-white p-5 shadow-[0_14px_35px_rgba(15,23,42,0.05)]">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-[color:var(--accent)]">
+                      <Icon name="shield" className="h-4 w-4" />
+                    </span>
+                    <p className="mt-4 text-sm font-semibold leading-6 text-[color:var(--primary)]">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={120}>
+              <div className="overflow-hidden rounded-[2rem] border border-white/70 bg-white p-4 shadow-[0_24px_70px_rgba(15,23,42,0.12)] sm:p-5">
+                <div className="overflow-hidden rounded-[1.5rem] bg-slate-950">
+                  <video
+                    controls
+                    preload="metadata"
+                    poster={service.media.image}
+                    className="aspect-video w-full object-cover"
+                  >
+                    <source src={service.media.video} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <div className="grid gap-4 px-2 py-5 sm:grid-cols-[1fr_auto] sm:items-center">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)]">
+                      Anjana Aim India Company
+                    </p>
+                    <h3 className="mt-2 font-heading text-2xl font-semibold text-[color:var(--primary)]">
+                      Renewable Energy Site Support
+                    </h3>
+                  </div>
+                  <a href={contactHref} className="btn-secondary">
+                    Discuss Project
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="section-shell">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+          <Reveal>
+            <SectionIntro
+              eyebrow="Capabilities"
+              title={`What we provide in ${service.title}`}
+              description="Focused support designed for contractors, developers, industrial clients, renewable project teams, and infrastructure stakeholders."
+            />
+          </Reveal>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {service.highlights.map((item, index) => (
+              <Reveal key={item} delay={index * 70}>
+                <div className="h-full rounded-[1.75rem] border border-[color:var(--border)] bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-50 text-[color:var(--accent)]">
+                    <Icon name="shield" className="h-5 w-5" />
+                  </span>
+                  <p className="mt-5 text-base font-semibold leading-7 text-[color:var(--primary)]">{item}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell section-tint">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionIntro
+              eyebrow="Process"
+              title="A clear execution flow for dependable delivery"
+              description="Every service is handled with a straightforward operating approach that keeps requirements, resources, and timelines aligned."
+              centered
+            />
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {service.process.map((item, index) => (
+              <Reveal key={item} delay={index * 80}>
+                <div className="rounded-[1.75rem] border border-[#eadfce] bg-white p-6 text-center shadow-[0_18px_45px_rgba(15,23,42,0.05)]">
+                  <p className="font-heading text-5xl font-semibold text-[#d7b48c]/55">{String(index + 1).padStart(2, "0")}</p>
+                  <h3 className="mt-4 font-heading text-xl font-semibold text-[color:var(--primary)]">{item}</h3>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-white py-16 sm:py-20">
+        <div className="schedule-line-art absolute bottom-0 left-0 top-0 hidden w-[45%] opacity-70 lg:block" aria-hidden="true" />
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+          <div aria-hidden="true" />
+          <Reveal>
+            <div className="max-w-3xl">
+              <p className="font-heading text-3xl font-semibold uppercase tracking-[0.18em] text-[color:var(--primary)] sm:text-4xl">
+                Schedule a Visit
+              </p>
+              <p className="mt-6 text-base leading-8 text-slate-600 sm:text-lg">
+                Experience our project support approach firsthand. Schedule a visit to discuss your {service.title.toLowerCase()} requirement, review practical next steps, and connect with our team for clear guidance.
+              </p>
+
+              <div className="mt-10 grid gap-6 sm:grid-cols-3">
+                {[
+                  { day: "Monday - Friday", time: "9:am - 4:30pm" },
+                  { day: "Saturday", time: "9:am - 1:30pm" },
+                  { day: "Sunday", time: "Closed" },
+                ].map((item) => (
+                  <div key={item.day}>
+                    <p className="font-heading text-xl font-semibold text-[color:var(--primary)]">{item.day}</p>
+                    <p className="mt-4 text-base font-semibold text-[#c5a178]">{item.time}</p>
+                  </div>
+                ))}
+              </div>
+
+              <a href={contactHref} className="btn-primary mt-10">
+                Contact Us
+              </a>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="px-4 py-8 sm:px-6 lg:px-8">
+        <Reveal className="mx-auto max-w-7xl">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(13,27,42,1),rgba(30,58,138,0.92))] px-6 py-10 shadow-[0_25px_80px_rgba(15,23,42,0.22)] sm:px-10 lg:px-14 lg:py-14">
+            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-300">Service Inquiry</p>
+                <h2 className="mt-4 font-heading text-3xl font-semibold text-white sm:text-4xl">
+                  Need reliable support for {service.title.toLowerCase()}?
+                </h2>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200">
+                  Share your requirement and our team will help you plan the next practical step.
+                </p>
+              </div>
+              <div className="flex lg:justify-end">
+                <a href={contactHref} className="btn-primary btn-primary--light">
+                  Contact Us
+                </a>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+    </main>
+  );
+}
+
 function App() {
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER ;
   const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
   const isAboutPage = currentPath === "/about";
   const isFaqPage = currentPath === "/faq";
   const isPrivacyPage = currentPath === "/privacy-policy";
+  const serviceSlug = currentPath.startsWith("/services/") ? currentPath.replace("/services/", "") : "";
+  const selectedService = serviceDetails.find((service) => service.slug === serviceSlug);
+  const selectedInquiryService = new URLSearchParams(window.location.search).get("service") || "";
 
   const handleInquirySubmit = (event) => {
     event.preventDefault();
@@ -902,8 +1217,10 @@ function App() {
         <FaqPage />
       ) : isPrivacyPage ? (
         <PrivacyPolicyPage />
+      ) : serviceSlug ? (
+        <ServiceDetailPage service={selectedService} />
       ) : (
-        <HomePage onInquirySubmit={handleInquirySubmit} />
+        <HomePage onInquirySubmit={handleInquirySubmit} selectedServiceSlug={selectedInquiryService} />
       )}
       <Footer />
       <FloatingActions />

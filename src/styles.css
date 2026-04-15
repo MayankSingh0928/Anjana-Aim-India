@@ -62,6 +62,24 @@ a {
     linear-gradient(135deg, #10233b, #173254 48%, #284c7a 100%);
 }
 
+.schedule-line-art {
+  background:
+    repeating-linear-gradient(
+      82deg,
+      rgba(197, 161, 120, 0.36) 0 2px,
+      transparent 2px 14px
+    );
+  clip-path: polygon(0 0, 32% 0, 100% 100%, 0 100%);
+}
+
+.schedule-line-art::after {
+  position: absolute;
+  inset: 42% -8% 0 14%;
+  content: "";
+  border: 2px dashed rgba(197, 161, 120, 0.28);
+  transform: skewX(34deg);
+}
+
 .btn-primary,
 .btn-secondary {
   display: inline-flex;
