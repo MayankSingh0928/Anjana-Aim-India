@@ -84,6 +84,7 @@ export const serviceDetails = [
       featureImage: "/assets/construction.webp",
       featureAlt: "Construction helmet and project drawings overlooking an urban development site",
     },
+    capabilitiesBackground: "/assets/contruct-background.webp",
     highlights: [
       "Commercial and industrial construction support",
       "Project planning and site coordination",
@@ -99,6 +100,21 @@ export const serviceDetails = [
     eyebrow: "Steel & Structural Material Support",
     summary:
       "Reliable rod and steel material supply for structural and infrastructure needs, helping projects maintain quality, availability, and delivery continuity.",
+    heroImage: "/assets/rod.webp",
+    heroImageAlt: "Steel rods arranged across a construction site for structural work",
+    heroLabel: "Steel Material Visual",
+    heroTitle: "Reliable Rod Supply for Structural Strength",
+    detailShowcase: {
+      title: "Rod Supply & Reinforcement Support",
+      summary:
+        "We support project teams with dependable rod and reinforcement material coordination, helping sites maintain structural quality, planned quantities, and delivery continuity. Our approach keeps material needs, vendor coordination, and site timelines aligned for smooth execution.",
+      cta: "Plan Supply",
+      image: "/assets/rod2.webp",
+      imageAlt: "Bundled steel rods prepared for construction use",
+      featureImage: "/assets/rod3.webp",
+      featureAlt: "Construction worker tying steel reinforcement rods on site",
+    },
+    capabilitiesBackground: "/assets/rod.webp",
     highlights: [
       "Rod and steel material sourcing",
       "Supply support for structural works",
@@ -114,6 +130,21 @@ export const serviceDetails = [
     eyebrow: "Property Preparation & Development",
     summary:
       "Professional land preparation and development solutions for future-ready commercial, industrial, renewable energy, and infrastructure projects.",
+    heroImage: "/assets/land3.webp",
+    heroImageAlt: "Site engineer overseeing land development excavation work at sunset",
+    heroLabel: "Land Readiness Visual",
+    heroTitle: "Ground Preparation for Future-Ready Projects",
+    detailShowcase: {
+      title: "Land Development & Site Preparation",
+      summary:
+        "We help convert raw land into project-ready ground through site assessment, earthwork coordination, grading support, access preparation, and practical development planning. The focus is to make each site usable, organized, and aligned with commercial, industrial, and infrastructure requirements.",
+      cta: "Plan Development",
+      image: "/assets/land2.webp",
+      imageAlt: "Excavators preparing land at an active development site",
+      featureImage: "/assets/land1.webp",
+      featureAlt: "Wide land grading and earth preparation work with machinery",
+    },
+    capabilitiesBackground: "/assets/land1.webp",
     highlights: [
       "Land preparation and development support",
       "Site readiness coordination",
@@ -159,6 +190,21 @@ export const serviceDetails = [
     eyebrow: "Solar Infrastructure Implementation",
     summary:
       "Renewable energy support and implementation assistance for solar infrastructure projects requiring land, manpower, and execution coordination.",
+    heroImage: "/assets/solar.webp",
+    heroImageAlt: "Solar technician installing panels on a rooftop project site",
+    heroLabel: "Solar Project Visual",
+    heroTitle: "Solar Infrastructure Support from Site to Setup",
+    detailShowcase: {
+      title: "Solar Project Implementation Support",
+      summary:
+        "We support solar infrastructure work with site coordination, manpower alignment, land readiness, and execution assistance for commercial renewable projects. Our role is to keep installation activity, ground support, and project requirements moving with dependable on-site coordination.",
+      cta: "Plan Solar Support",
+      image: "/assets/solar2.webp",
+      imageAlt: "Large-scale solar farm installation across open land",
+      featureImage: "/assets/solar3.avif",
+      featureAlt: "Solar energy infrastructure and panel development showcase",
+    },
+    capabilitiesBackground: "/assets/solar2.webp",
     highlights: [
       "Solar project support services",
       "Land and infrastructure coordination",
@@ -174,6 +220,41 @@ export const serviceDetails = [
     eyebrow: "Skilled Workforce Solutions",
     summary:
       "Skilled and dependable workforce solutions for industrial, construction, infrastructure, and project-based requirements.",
+    heroImage: "/assets/labour4.webp",
+    heroImageAlt: "Skilled labor team walking through a construction site at sunset",
+    heroLabel: "Workforce Visual",
+    heroTitle: "Reliable Teams for Site Execution",
+    detailShowcase: {
+      title: "Skilled Labor Deployment & Site Coordination",
+      summary:
+        "We provide dependable skilled and semi-skilled labor support for construction, infrastructure, industrial, and project-based requirements. Our focus is disciplined deployment, practical site coordination, safety-aware teams, and ongoing manpower availability that keeps work moving.",
+      cta: "Plan Workforce",
+      image: "/assets/labour2.webp",
+      imageAlt: "Construction workers handling site installation and labor tasks",
+      featureImage: "/assets/labour.webp",
+      featureAlt: "Labor team standing on construction scaffolding with safety helmets",
+    },
+    capabilitiesBackground: "/assets/labour3.webp",
+    gallery: [
+      {
+        image: "/assets/labour.webp",
+        alt: "Construction labor team on scaffolding",
+        title: "Team Deployment",
+        description: "Coordinated labor availability for active site needs.",
+      },
+      {
+        image: "/assets/labour2.webp",
+        alt: "Workers managing site installation tasks",
+        title: "On-Site Execution",
+        description: "Hands-on support for construction and industrial work fronts.",
+      },
+      {
+        image: "/assets/labour3.webp",
+        alt: "Labor working around reinforcement and high-rise site structure",
+        title: "Structural Work Support",
+        description: "Workforce coordination around reinforcement and building activity.",
+      },
+    ],
     highlights: [
       "Skilled and semi-skilled labor support",
       "Industrial and site workforce coordination",
@@ -217,28 +298,54 @@ export const whyChooseUs = [
   },
 ];
 
+export const legalCertifications = [
+  {
+    title: "GST Registered",
+    description: "Government-recognized tax registration for compliant business operations.",
+    status: "Verified business registration",
+  },
+  {
+    title: "MSME / Udyam Certified",
+    description: "Registered enterprise under the MSME/Udyam framework for recognized business identity.",
+    status: "Registered enterprise",
+  },
+  {
+    title: "Shop & Establishment Registered",
+    description: "Local establishment registration supporting transparent commercial operations.",
+    status: "Business establishment proof",
+  },
+];
+
 export const projects = [
   {
     title: "Integrated Infrastructure Development",
     category: "Infrastructure Development",
+    image: "/assets/infrastructure.webp",
+    alt: "Modern infrastructure building and commercial development site",
     description:
       "Coordinated groundwork, labor deployment, and structural supply support for future-ready infrastructure sites.",
   },
   {
     title: "Commercial Construction Support",
     category: "Construction Support",
+    image: "/assets/commercial.webp",
+    alt: "Commercial mall center development and urban construction project",
     description:
       "Execution assistance for commercial builds with a focus on site readiness, workforce availability, and materials reliability.",
   },
   {
     title: "Renewable Energy Site Assistance",
     category: "Renewable Energy Projects",
+    image: "/assets/wind.webp",
+    alt: "Wind turbine project landscape for renewable energy support",
     description:
       "On-ground support for solar and wind project activities requiring disciplined coordination and dependable teams.",
   },
   {
     title: "Land Preparation & Development Work",
     category: "Land Development Work",
+    image: "/assets/land.webp",
+    alt: "Aerial land parcel marked for development planning",
     description:
       "Structured land development support designed to prepare plots and sites for large-scale project use.",
   },

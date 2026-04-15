@@ -32,7 +32,7 @@ export function AboutSection({ standalone = false }) {
             <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
               <div className="overflow-hidden rounded-[1.5rem] bg-[#f7d92c]">
                 <img
-                  src="/assets/founder-ishwar-singh-anjana.png"
+                  src="/assets/founder-ishwar-singh-anjana.webp"
                   alt="Founder Ishwar Singh Anjana"
                   className="h-full w-full object-cover object-center"
                 />

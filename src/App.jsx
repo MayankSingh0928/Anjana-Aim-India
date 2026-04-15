@@ -10,6 +10,7 @@ import {
   contactInfo,
   coverageStats,
   infrastructureStats,
+  legalCertifications,
   processSteps,
   projects,
   serviceDetails,
@@ -62,12 +63,14 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
   const selectedServiceTitle = getServiceTitleFromSlug(selectedServiceSlug);
 
   useEffect(() => {
-    if (window.location.hash !== "#contact") {
+    const targetId = window.location.hash.replace("#", "");
+
+    if (!targetId) {
       return;
     }
 
     window.setTimeout(() => {
-      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+      document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 0);
   }, []);
 
@@ -131,7 +134,7 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
                 <div className="rounded-[1.5rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))] p-6">
                   <div className="flex items-center gap-3">
                     <img
-                      src="/assets/aim-logo.png"
+                      src="/assets/aim-logo.webp"
                       alt="Anjana Aim India Company brand logo"
                       className="h-14 w-14 rounded-full border border-white/10 object-cover"
                     />
@@ -258,21 +261,27 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
         </div>
       </section>
 
-      <section id="services" className="section-shell section-tint">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section id="services" className="section-shell service-bg-section relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,27,42,0.92),rgba(13,27,42,0.78),rgba(13,27,42,0.54))]" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <SectionIntro
-              eyebrow="Services"
-              title="Integrated business support across construction, development, and energy"
-              description="Our service portfolio is structured to support business clients, contractors, and project stakeholders with dependable delivery and operational strength."
-              centered
-            />
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-amber-200 shadow-sm">
+                Services
+              </span>
+              <h2 className="mt-5 font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                Integrated business support across construction, development, and energy
+              </h2>
+              <p className="mt-4 text-base leading-7 text-slate-200 sm:text-lg">
+                Our service portfolio is structured to support business clients, contractors, and project stakeholders with dependable delivery and operational strength.
+              </p>
+            </div>
           </Reveal>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.map((service, index) => (
               <Reveal key={service.title} delay={index * 70}>
-                <article className="group h-full rounded-[1.75rem] border border-[color:var(--border)] bg-white p-7 shadow-[0_20px_50px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(15,23,42,0.12)]">
+                <article className="group h-full rounded-[1.75rem] border border-white/20 bg-white/92 p-7 shadow-[0_24px_70px_rgba(0,0,0,0.18)] backdrop-blur-sm transition duration-300 hover:-translate-y-2 hover:bg-white hover:shadow-[0_30px_80px_rgba(0,0,0,0.26)]">
                   <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-900 text-white shadow-lg shadow-slate-900/10 transition group-hover:bg-[color:var(--accent)]">
                     <Icon name={service.icon} className="h-6 w-6" />
                   </div>
@@ -305,9 +314,16 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
           <div className="mt-14 grid gap-6 lg:grid-cols-2">
             {projects.map((project, index) => (
               <Reveal key={project.title} delay={index * 90}>
-                <article className="overflow-hidden rounded-[2rem] border border-[color:var(--border)] bg-white shadow-[0_20px_50px_rgba(15,23,42,0.06)]">
-                  <div className="project-surface flex min-h-56 items-end p-6">
-                    <div className="rounded-2xl border border-white/15 bg-slate-950/55 px-4 py-3 backdrop-blur-sm">
+                <article className="group overflow-hidden rounded-[2rem] border border-[color:var(--border)] bg-white shadow-[0_20px_50px_rgba(15,23,42,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.14)]">
+                  <div className="project-surface relative flex min-h-64 items-end overflow-hidden p-6">
+                    <img
+                      src={project.image}
+                      alt={project.alt}
+                      className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.1),rgba(15,23,42,0.82))]" />
+                    <div className="absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(245,158,11,0.24),transparent)] opacity-80" />
+                    <div className="relative rounded-2xl border border-white/15 bg-slate-950/65 px-4 py-3 backdrop-blur-sm">
                       <p className="text-xs font-semibold uppercase tracking-[0.28em] text-amber-300">
                         {project.category}
                       </p>
@@ -329,27 +345,73 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
         </div>
       </section>
 
-      <section id="why-choose-us" className="section-shell section-tint">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section id="why-choose-us" className="section-shell why-bg-section relative overflow-hidden">
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(13,27,42,0.9),rgba(13,27,42,0.72),rgba(13,27,42,0.42))]" aria-hidden="true" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
-            <SectionIntro
-              eyebrow="Why Choose Us"
-              title="A dependable partner for business-critical site and project needs"
-              description="Our positioning is built around reliability, capability, and the confidence business clients expect from a serious industrial service company."
-              centered
-            />
+            <div className="mx-auto max-w-3xl text-center">
+              <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-amber-200 shadow-sm">
+                Why Choose Us
+              </span>
+              <h2 className="mt-5 font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                A dependable partner for business-critical site and project needs
+              </h2>
+              <p className="mt-4 text-base leading-7 text-slate-200 sm:text-lg">
+                Our positioning is built around reliability, capability, and the confidence business clients expect from a serious industrial service company.
+              </p>
+            </div>
           </Reveal>
 
           <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {whyChooseUs.map((item, index) => (
               <Reveal key={item.title} delay={index * 70}>
-                <div className="rounded-[1.75rem] border border-[color:var(--border)] bg-white p-7 shadow-[0_20px_45px_rgba(15,23,42,0.06)]">
+                <div className="h-full rounded-[1.75rem] border border-white/20 bg-white/92 p-7 shadow-[0_24px_70px_rgba(0,0,0,0.18)] backdrop-blur-sm transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-[0_30px_80px_rgba(0,0,0,0.26)]">
                   <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-[color:var(--accent)]">
                     <Icon name="shield" className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 font-heading text-xl font-semibold text-[color:var(--primary)]">{item.title}</h3>
                   <p className="mt-3 text-base leading-7 text-slate-600">{item.description}</p>
                 </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionIntro
+              eyebrow="Certifications & Legal"
+              title="Clean verification signals without exposing sensitive documents"
+              description="We present business legitimacy in a professional format while keeping PAN declarations, raw editable files, and sensitive records private."
+              centered
+            />
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {legalCertifications.map((item, index) => (
+              <Reveal key={item.title} delay={index * 80}>
+                <article className="h-full rounded-[1.75rem] border border-[color:var(--border)] bg-[linear-gradient(180deg,#ffffff,#f8fafc)] p-7 shadow-[0_20px_55px_rgba(15,23,42,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.12)]">
+                  <div className="flex items-start gap-4">
+                    <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-amber-50 text-[color:var(--accent)]">
+                      <Icon name="shield" className="h-6 w-6" />
+                    </span>
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--accent)]">
+                        {item.status}
+                      </p>
+                      <h3 className="mt-3 font-heading text-2xl font-semibold text-[color:var(--primary)]">
+                        {item.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <p className="mt-5 text-base leading-7 text-slate-600">{item.description}</p>
+                  <div className="mt-6 flex items-center gap-2 border-t border-[color:var(--border)] pt-5 text-sm font-semibold text-slate-500">
+                    <Icon name="shield" className="h-4 w-4 text-[color:var(--accent)]" />
+                    Public-safe verification summary
+                  </div>
+                </article>
               </Reveal>
             ))}
           </div>
@@ -470,7 +532,7 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
             <div className="rounded-[2rem] border border-[color:var(--border)] bg-white p-6 shadow-[0_24px_60px_rgba(15,23,42,0.08)] sm:p-8">
               <div className="flex items-center gap-4">
                 <img
-                  src="/assets/aim-logo.png"
+                  src="/assets/aim-logo.webp"
                   alt="Anjana Aim India Company circular logo"
                   className="h-16 w-16 rounded-full border border-amber-200 object-cover"
                 />
@@ -911,6 +973,7 @@ function ServiceDetailPage({ service }) {
 
   const detailShowcase = service.detailShowcase;
   const contactHref = getContactHref(service.slug);
+  const capabilitiesBackground = service.capabilitiesBackground;
 
   return (
     <main>
@@ -951,6 +1014,24 @@ function ServiceDetailPage({ service }) {
                     </span>
                     <h2 className="mt-3 font-heading text-3xl font-semibold text-white">
                       Wind & Solar Infrastructure Support
+                    </h2>
+                  </div>
+                </div>
+              ) : service.heroImage ? (
+                <div className="relative overflow-hidden rounded-[1.5rem]">
+                  <img
+                    src={service.heroImage}
+                    alt={service.heroImageAlt}
+                    className="h-80 w-full object-cover transition duration-700 hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.06),rgba(15,23,42,0.68))]" />
+                  <div className="absolute inset-x-0 top-0 h-28 bg-[linear-gradient(180deg,rgba(245,158,11,0.26),transparent)]" />
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <span className="inline-flex rounded-full bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--accent)]">
+                      {service.heroLabel}
+                    </span>
+                    <h2 className="mt-3 font-heading text-3xl font-semibold text-white">
+                      {service.heroTitle}
                     </h2>
                   </div>
                 </div>
@@ -1064,20 +1145,93 @@ function ServiceDetailPage({ service }) {
         </section>
       ) : null}
 
-      <section className="section-shell">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
+      {service.gallery ? (
+        <section className="section-shell bg-[linear-gradient(180deg,rgba(248,250,252,0.96),rgba(255,255,255,1))]">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <Reveal>
+              <SectionIntro
+                eyebrow="Workforce Gallery"
+                title={`${service.title} support in action`}
+                description="A visual overview of deployment, supervision, and practical site support across active project environments."
+                centered
+              />
+            </Reveal>
+
+            <div className="mt-14 grid gap-6 md:grid-cols-3">
+              {service.gallery.map((item, index) => (
+                <Reveal key={item.title} delay={index * 80}>
+                  <article className="group h-full overflow-hidden rounded-[1.75rem] border border-[color:var(--border)] bg-white shadow-[0_22px_60px_rgba(15,23,42,0.08)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.14)]">
+                    <div className="relative h-72 overflow-hidden">
+                      <img
+                        src={item.image}
+                        alt={item.alt}
+                        className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.02),rgba(15,23,42,0.58))]" />
+                    </div>
+                    <div className="p-6">
+                      <div className="flex items-center gap-3">
+                        <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-amber-50 text-[color:var(--accent)]">
+                          <Icon name="labor" className="h-5 w-5" />
+                        </span>
+                        <h3 className="font-heading text-xl font-semibold text-[color:var(--primary)]">
+                          {item.title}
+                        </h3>
+                      </div>
+                      <p className="mt-4 text-base leading-7 text-slate-600">{item.description}</p>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section
+        className={`section-shell relative overflow-hidden ${capabilitiesBackground ? "bg-slate-950" : ""}`}
+        style={
+          capabilitiesBackground
+            ? {
+                backgroundAttachment: "fixed",
+                backgroundImage: `url(${capabilitiesBackground})`,
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundSize: "cover",
+              }
+            : undefined
+        }
+      >
+        {capabilitiesBackground ? (
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.92),rgba(15,23,42,0.74),rgba(15,23,42,0.58))]" aria-hidden="true" />
+        ) : null}
+        <div className="relative mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:px-8">
           <Reveal>
-            <SectionIntro
-              eyebrow="Capabilities"
-              title={`What we provide in ${service.title}`}
-              description="Focused support designed for contractors, developers, industrial clients, renewable project teams, and infrastructure stakeholders."
-            />
+            {capabilitiesBackground ? (
+              <div className="max-w-3xl">
+                <span className="inline-flex rounded-full border border-white/20 bg-white/12 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-amber-200 shadow-sm">
+                  Capabilities
+                </span>
+                <h2 className="mt-5 font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+                  What we provide in {service.title}
+                </h2>
+                <p className="mt-4 text-base leading-7 text-slate-200 sm:text-lg">
+                  Focused support designed for contractors, developers, industrial clients, renewable project teams, and infrastructure stakeholders.
+                </p>
+              </div>
+            ) : (
+              <SectionIntro
+                eyebrow="Capabilities"
+                title={`What we provide in ${service.title}`}
+                description="Focused support designed for contractors, developers, industrial clients, renewable project teams, and infrastructure stakeholders."
+              />
+            )}
           </Reveal>
 
           <div className="grid gap-5 sm:grid-cols-2">
             {service.highlights.map((item, index) => (
               <Reveal key={item} delay={index * 70}>
-                <div className="h-full rounded-[1.75rem] border border-[color:var(--border)] bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.05)]">
+                <div className="h-full rounded-[1.75rem] border border-[color:var(--border)] bg-white/95 p-6 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur-sm">
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-50 text-[color:var(--accent)]">
                     <Icon name="shield" className="h-5 w-5" />
                   </span>

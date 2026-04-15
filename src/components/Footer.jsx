@@ -1,13 +1,13 @@
-import { contactInfo, footerServices, navLinks } from "../data/siteContent";
+import { contactInfo, navLinks, services } from "../data/siteContent";
 
 export function Footer() {
   return (
     <footer className="bg-[color:var(--primary)] text-white">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <div className="flex items-center gap-3">
+          <a href="/" className="flex items-center gap-3 transition hover:opacity-90">
             <img
-              src="/assets/aim-logo.png"
+              src="/assets/aim-logo.webp"
               alt="Anjana Aim India Company logo"
               className="h-14 w-14 rounded-full border border-white/15 object-cover"
             />
@@ -15,7 +15,7 @@ export function Footer() {
               <p className="font-heading text-xl font-semibold">Anjana Aim India Company</p>
               <p className="mt-1 text-sm text-slate-300">Determined to win with dependable execution.</p>
             </div>
-          </div>
+          </a>
           <p className="mt-5 text-sm leading-7 text-slate-300">
             Diversified project support across construction, infrastructure, land development, renewable energy,
             and labor contracting.
@@ -38,8 +38,12 @@ export function Footer() {
         <div>
           <p className="font-heading text-lg font-semibold">Services</p>
           <ul className="mt-5 space-y-3 text-sm text-slate-300">
-            {footerServices.map((service) => (
-              <li key={service}>{service}</li>
+            {services.map((service) => (
+              <li key={service.slug}>
+                <a href={`/services/${service.slug}`} className="transition hover:text-white">
+                  {service.title}
+                </a>
+              </li>
             ))}
           </ul>
         </div>

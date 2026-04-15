@@ -28,7 +28,7 @@ export function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
         <a href="/" className="flex items-center gap-3">
           <img
-            src="/assets/aim-logo.png"
+            src="/assets/aim-logo.webp"
             alt="Anjana Aim India Company logo"
             className="h-12 w-12 rounded-full border border-amber-200/70 object-cover shadow-sm"
           />

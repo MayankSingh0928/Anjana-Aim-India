@@ -46,6 +46,22 @@ a {
     radial-gradient(circle at top right, rgba(245, 158, 11, 0.08), transparent 26%);
 }
 
+.service-bg-section,
+.why-bg-section {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.service-bg-section {
+  background-image: url("/assets/services-background.webp");
+}
+
+.why-bg-section {
+  background-image: url("/assets/why-choose-us-background.webp");
+}
+
 .hero-grid {
   background-image:
     linear-gradient(rgba(15, 23, 42, 0.06) 1px, transparent 1px),
@@ -53,13 +69,6 @@ a {
   background-size: 52px 52px;
   -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.35));
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.35));
-}
-
-.project-surface {
-  background:
-    linear-gradient(180deg, rgba(15, 23, 42, 0.14), rgba(15, 23, 42, 0.72)),
-    radial-gradient(circle at top left, rgba(245, 158, 11, 0.45), transparent 28%),
-    linear-gradient(135deg, #10233b, #173254 48%, #284c7a 100%);
 }
 
 .schedule-line-art {
