@@ -19,3 +19,7 @@ pnpm-debug.log*
 *.swo
 
 coverage/
+
+# Private document extracts and source PDFs
+tmp_pdf_extract/
+*.pdf
