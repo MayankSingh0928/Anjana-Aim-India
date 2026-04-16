@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://anjana-aim-india.vercel.app/sitemap.xml
+Sitemap: https://www.anjanaaim.in/sitemap.xml
