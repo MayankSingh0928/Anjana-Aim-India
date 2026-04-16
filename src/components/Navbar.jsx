@@ -25,18 +25,20 @@ export function Navbar() {
           : "bg-white/80 backdrop-blur-md"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        <a href="/" className="flex items-center gap-3">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
+        <a href="/" className="flex min-w-0 items-center gap-3">
           <img
             src="/assets/aim-logo.webp"
             alt="Anjana Aim India Company logo"
-            className="h-12 w-12 rounded-full border border-amber-200/70 object-cover shadow-sm"
+            className="h-11 w-11 shrink-0 rounded-full border border-amber-200/70 object-cover shadow-sm sm:h-12 sm:w-12"
           />
-          <div>
-            <p className="font-heading text-lg font-semibold text-[color:var(--primary)]">
+          <div className="min-w-0">
+            <p className="truncate font-heading text-base font-semibold text-[color:var(--primary)] sm:text-lg">
               Anjana Aim India
             </p>
-            <p className="text-xs uppercase tracking-[0.24em] text-slate-500">Company</p>
+            <p className="truncate text-[0.68rem] uppercase tracking-[0.18em] text-slate-500 sm:text-xs sm:tracking-[0.24em]">
+              Company
+            </p>
           </div>
         </a>
 
@@ -96,7 +98,7 @@ export function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((current) => !current)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[color:var(--border)] text-[color:var(--primary)] lg:hidden"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[color:var(--border)] text-[color:var(--primary)] lg:hidden"
           aria-label="Toggle navigation menu"
           aria-expanded={open}
         >
@@ -109,7 +111,7 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <nav className="border-t border-[color:var(--border)] bg-white px-4 py-4 shadow-xl shadow-slate-900/5 lg:hidden">
+        <nav className="max-h-[calc(100svh-4.5rem)] overflow-y-auto border-t border-[color:var(--border)] bg-white px-4 py-4 shadow-xl shadow-slate-900/5 lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-4">
             {navLinks.map((link) => (
               <div key={link.href} className="flex flex-col gap-2">

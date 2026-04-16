@@ -19,6 +19,19 @@ html {
   scroll-behavior: smooth;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   margin: 0;
   font-family: var(--font-sans);
@@ -26,10 +39,23 @@ body {
     radial-gradient(circle at top left, rgba(15, 23, 42, 0.04), transparent 25%),
     linear-gradient(180deg, #f8fafc 0%, #f5f7fb 100%);
   color: #0f172a;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 a {
   text-decoration: none;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
 }
 
 .font-heading {
@@ -94,10 +120,14 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 3rem;
   border-radius: 9999px;
   padding: 0.9rem 1.55rem;
   font-size: 0.95rem;
   font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  white-space: normal;
   transition:
     transform 180ms ease,
     box-shadow 180ms ease,
@@ -209,5 +239,94 @@ a {
 @media (max-width: 640px) {
   .section-shell {
     padding: 4rem 0;
+  }
+}
+
+@media (max-width: 767px) {
+  body {
+    background: linear-gradient(180deg, #f8fafc 0%, #f5f7fb 100%);
+  }
+
+  main {
+    overflow-x: clip;
+  }
+
+  .home-hero-layout {
+    min-height: auto;
+    gap: 2.25rem;
+    padding-bottom: 3.5rem;
+    padding-top: 3rem;
+  }
+
+  .service-bg-section,
+  .why-bg-section {
+    background-attachment: scroll;
+  }
+
+  [style*="background-attachment: fixed"] {
+    background-attachment: scroll !important;
+  }
+
+  .text-6xl,
+  .text-5xl {
+    font-size: clamp(2.45rem, 13vw, 3.45rem);
+    line-height: 1.05;
+  }
+
+  .text-4xl {
+    font-size: clamp(2rem, 10vw, 2.65rem);
+    line-height: 1.12;
+  }
+
+  .text-3xl {
+    font-size: clamp(1.65rem, 8vw, 2.1rem);
+    line-height: 1.18;
+  }
+
+  [class*="tracking-[0.3em]"],
+  [class*="tracking-[0.28em]"],
+  [class*="tracking-[0.25em]"],
+  [class*="tracking-[0.24em]"],
+  [class*="tracking-[0.18em]"] {
+    letter-spacing: 0.12em;
+  }
+
+  [class*="rounded-[2rem]"],
+  [class*="rounded-[1.9rem]"],
+  [class*="rounded-[1.75rem]"] {
+    border-radius: 1.25rem;
+  }
+
+  .h-96 {
+    height: 16rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    min-height: 3.25rem;
+    padding-inline: 1rem;
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    border-radius: 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .section-shell {
+    padding: 3.25rem 0;
+  }
+
+  .text-6xl,
+  .text-5xl {
+    font-size: clamp(2.2rem, 12vw, 3rem);
+  }
+
+  .text-4xl {
+    font-size: clamp(1.85rem, 9vw, 2.35rem);
   }
 }

@@ -15,10 +15,10 @@ export const navLinks = [
 ];
 
 export const stats = [
-  { value: "Quality", label: "Services" },
-  { value: "Skilled", label: "Workforce" },
-  { value: "Timely", label: "Delivery" },
-  { value: "Multi-Sector", label: "Expertise" },
+  { value: "Founder-Led", label: "Leadership" },
+  { value: "Multi-Sector", label: "Ventures" },
+  { value: "Project-Ready", label: "Support" },
+  { value: "New India", label: "Vision" },
 ];
 
 export const services = [
@@ -326,7 +326,7 @@ export const whyChooseUs = [
   {
     title: "Multi-Industry Capability",
     description:
-      "Construction, infrastructure, land development, and renewable support under one business umbrella.",
+      "Infrastructure support, material trading, food products, digital services, renewable support, and manpower coordination under a wider entrepreneur-led profile.",
   },
   {
     title: "Client-Centric Approach",
@@ -355,49 +355,140 @@ export const legalCertifications = [
 
 export const projects = [
   {
+    slug: "integrated-infrastructure-development",
     title: "Integrated Infrastructure Development",
     category: "Infrastructure Development",
     image: "/assets/infrastructure.webp",
     alt: "Modern infrastructure building and commercial development site",
     description:
-      "Coordinated groundwork, labor deployment, and structural supply support for future-ready infrastructure sites.",
+      "Coordinated groundwork, labor deployment, structural supply, and compliant business support for future-ready infrastructure sites.",
+    eyebrow: "Commercial Infrastructure",
+    summary:
+      "A consolidated project capability page for civil, utility, material, and workforce support backed by Anjana Aim India Company's registered business identity and site-ready execution approach.",
+    facts: [
+      { label: "Business Identity", value: "GST registered proprietorship" },
+      { label: "GSTIN", value: "23BUSPA3622H3ZT" },
+      { label: "Principal Base", value: "Maliya Kherkheda, Mandsaur, Madhya Pradesh" },
+      { label: "Project Mode", value: "Multi-service infrastructure support" },
+    ],
+    highlights: [
+      "Coordinates land readiness, construction activity, materials, and manpower under one operating approach.",
+      "Supports business clients with registered GST documentation and regular business status.",
+      "Built for practical execution across construction, renewable, utility, and development requirements.",
+      "Keeps stakeholder communication, site resources, and delivery expectations aligned from planning to handover.",
+    ],
+    process: ["Requirement mapping", "Resource alignment", "Site coordination", "Progress reporting"],
+    documentSignals: [
+      "GST registration certificate issued on 27/02/2026.",
+      "Trade name recorded as ANJANAAIM INDIA COMPANY.",
+      "Regular GST registration with principal place of business in Mandsaur, Madhya Pradesh.",
+    ],
   },
   {
-    title: "Commercial Construction Support",
-    category: "Construction Support",
-    image: "/assets/commercial.webp",
-    alt: "Commercial mall center development and urban construction project",
+    slug: "33kv-line-project",
+    title: "33KV Line Project",
+    category: "Electric Pole & Line Project",
+    image: "/assets/electric-project.webp",
+    alt: "33KV electric line project route drawing and conductor plan",
     description:
-      "Execution assistance for commercial builds with a focus on site readiness, workforce availability, and materials reliability.",
+      "Project support for 33KV line marking, pole and stay pit excavation, safety control, manpower planning, and field execution readiness.",
+    eyebrow: "Power Line Marking & Excavation",
+    summary:
+      "A utility infrastructure project page shaped from the ReNew Power SOP for 33KV line marking and excavation, covering survey-based marking, manual and machine excavation, safety, inspection, and records.",
+    facts: [
+      { label: "Document Reference", value: "RENEW-PRJ-MV-SOP-2" },
+      { label: "Revision", value: "00" },
+      { label: "SOP Date", value: "02/07/2022" },
+      { label: "Work Type", value: "33KV line marking and excavation" },
+    ],
+    highlights: [
+      "Line marking follows approved drawings, survey reports, pole pit marking charts, OHL schedules, and layouts.",
+      "Excavation work covers pole and stay pits by manual method and DTH, boring, or tractor-mounted equipment where soil conditions require it.",
+      "Resource planning includes site engineer, safety officer, quality engineer, contractor supervisor, skilled workers, boring operator, signal men, and helpers.",
+      "Safety controls include PPE, HSE inspection, barricading pits, electrical line checks, LC/LOTO controls, and emergency contact display at the workplace.",
+    ],
+    process: ["Pole and stay pit marking", "Manual excavation", "Machine boring where required", "Inspection and records"],
+    documentSignals: [
+      "SOP purpose states guidelines for 33KV line marking and excavation.",
+      "Reference standards include IS 5613, IS 785, IS 3043, IS 6639, IS 5300, Indian Electrical Rules, CBIP, and REC guidance.",
+      "Records include in-process inspection checklist, QA methodology checklist, permit to work, final check discussion, and JSA.",
+    ],
   },
   {
-    title: "Renewable Energy Site Assistance",
-    category: "Renewable Energy Projects",
+    slug: "suzlon-vendorship",
+    title: "Suzlon Vendorship",
+    category: "Suzlon Wind Energy Vendor Support",
     image: "/assets/wind.webp",
     alt: "Wind turbine project landscape for renewable energy support",
     description:
-      "On-ground support for solar and wind project activities requiring disciplined coordination and dependable teams.",
+      "Vendor support for Suzlon wind project locations, pathway access, right of way, farmer documentation, clearances, and construction continuity.",
+    eyebrow: "Suzlon Vendor Partnership",
+    summary:
+      "A Suzlon vendorship project page based on the land development agreement between Anjanaaim India Company and Suzlon Renewable Development Limited for wind power project locations in Madhya Pradesh.",
+    facts: [
+      { label: "Vendor Relationship", value: "Suzlon land development support" },
+      { label: "Agreement Date", value: "13/04/2026" },
+      { label: "Project Districts", value: "Ujjain, Shajapur, Dewas" },
+      { label: "WOEG Locations", value: "19 wind turbine locations" },
+    ],
+    highlights: [
+      "Agreement identifies Anjanaaim India Company as the developer engaged for identification and development of renewable energy project locations.",
+      "Suzlon Renewable Development Limited is recorded as the company acquiring and providing land for setting up wind power projects across India.",
+      "Covers WOEG location temporary pathways, right of way, access road connectivity, and movement readiness for manpower, materials, blades, nacelle, cranes, and vehicles.",
+      "Coordinates farmer KYC, Khasra P-II current-year documents, land and farmer documents, and final clearance support.",
+      "Keeps renewable project activity moving through liaison with revenue, police, political, Gram Panchayat, village, and construction stakeholders.",
+    ],
+    process: ["Location and drawing review", "Pathway and ROW coordination", "Farmer documentation", "Construction support through commissioning"],
+    documentSignals: [
+      "Land Development Agreement executed at Ujjain between Anjanaaim India Company and Suzlon Renewable Development Limited, dated 13/04/2026.",
+      "Suzlon Renewable Development Limited is noted as formerly known as Suzlon Gujarat Wind Park Ltd.",
+      "Project is defined as wind power project sites in Ujjain, Shajapur, and Dewas districts of Madhya Pradesh.",
+      "WOEG is defined in the agreement as a 3.15 MW S140-144 type wind turbine.",
+      "Schedule 2 lists 19 WOEG location IDs for Suzlon project development coordination.",
+    ],
   },
   {
+    slug: "land-preparation-development-work",
     title: "Land Preparation & Development Work",
     category: "Land Development Work",
     image: "/assets/land.webp",
     alt: "Aerial land parcel marked for development planning",
     description:
-      "Structured land development support designed to prepare plots and sites for large-scale project use.",
+      "Structured land development support designed to prepare access, documents, temporary pathways, and right-of-way readiness for large-scale project use.",
+    eyebrow: "Land Development & Pathway Readiness",
+    summary:
+      "A land development project page based on the documented scope of development services: pathway preparation, due diligence, right-of-way agreements, clearances, and staged handover for wind project construction.",
+    facts: [
+      { label: "Core Scope", value: "WOEG location temporary pathway" },
+      { label: "Minimum Pathway", value: "6.5 meter width" },
+      { label: "ROW Period", value: "Minimum 2 years" },
+      { label: "Commercial Model", value: "Milestone-based schedule" },
+    ],
+    highlights: [
+      "Arranges temporary pathway access with required bellmouth, turning radius, and route changes as project drawings evolve.",
+      "Supports legal and technical due diligence with farmer KYC, Khasra P-II, Rin Pustika, and other land-related documents.",
+      "Handles notary agreement execution, easement deed coordination, lease rent proof, crop compensation, and development document handover.",
+      "Maintains accountability for tree cutting and trimming, statutory clearances, government pathway usage, and ROW or litigation resolution until commissioning.",
+    ],
+    process: ["Land document collection", "Pathway agreement execution", "Ground preparation and access", "Handover and progress reporting"],
+    documentSignals: [
+      "Schedule 1 defines scope of development services and responsibility split.",
+      "Temporary pathway requirement includes 6.5 meter minimum width and 50m x 50m bellmouth where required.",
+      "Payment schedule is milestone-based across agreement execution, pathway development, machinery movement, and WOEG erection.",
+    ],
   },
 ];
 
 export const contactInfo = [
   {
     label: "Phone",
-    value: "+91 98765 43210",
-    href: "tel:+919876543210",
+    value: "+91 81202 28066",
+    href: "tel:+918120228066",
   },
   {
     label: "Email",
-    value: "info@anjanaaim.in",
-    href: "mailto:info@anjanaaim.in",
+    value: "ishuanjana1@gmail.com",
+    href: "mailto:ishuanjana1@gmail.com",
   },
   {
     label: "Address",

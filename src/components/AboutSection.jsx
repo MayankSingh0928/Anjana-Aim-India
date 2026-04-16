@@ -11,7 +11,7 @@ export function AboutSection({ standalone = false }) {
             <SectionIntro
               eyebrow="About Us"
               title="About Anjana Aim India Company"
-              description="Anjana Aim India Company is a diversified business focused on construction, rod supply, land development, wind energy projects, solar energy projects, and labor contracting. We are committed to delivering dependable project execution, quality resources, and professional service support across infrastructure and energy sectors."
+              description="Anjana Aim India Company is part of a broader entrepreneur-led profile associated with Ishwar Singh Anjana, spanning infrastructure support, material trading, food product manufacturing, digital services, renewable project support, and labor contracting."
             />
           </div>
 
@@ -28,16 +28,26 @@ export function AboutSection({ standalone = false }) {
         </Reveal>
 
         <Reveal delay={120}>
-          <div className="relative rounded-[2rem] border border-[color:var(--border)] bg-white p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] sm:p-6">
-            <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr]">
-              <div className="overflow-hidden rounded-[1.5rem] bg-[#f7d92c]">
+          <div className="relative overflow-hidden rounded-[2rem] border border-[color:var(--border)] bg-white p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] sm:p-6">
+            <div className="absolute right-0 top-0 h-32 w-32 bg-amber-200/25 blur-3xl" aria-hidden="true" />
+            <div className="relative grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+              <div className="relative min-h-[34rem] overflow-hidden rounded-[1.5rem] bg-[#f7d92c] shadow-[0_18px_45px_rgba(15,23,42,0.12)]">
                 <img
-                  src="/assets/founder-ishwar-singh-anjana.webp"
+                  src="/assets/owner3.webp"
                   alt="Founder Ishwar Singh Anjana"
-                  className="h-full w-full object-cover object-center"
+                  className="absolute inset-0 h-full w-full object-cover object-[center_18%]"
                 />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0),rgba(15,23,42,0.38))]" />
+                <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/20 bg-white/90 p-4 shadow-xl backdrop-blur-md">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--accent)]">
+                    Founder
+                  </p>
+                  <p className="mt-2 font-heading text-xl font-semibold text-[color:var(--primary)]">
+                    Ishwar Singh Anjana
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col justify-center p-2">
+              <div className="flex flex-col justify-center p-2 lg:p-4">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="rounded-full bg-amber-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)]">
                     Founder & Vision
@@ -49,17 +59,17 @@ export function AboutSection({ standalone = false }) {
                   Anjana
                 </h3>
                 <p className="mt-5 max-w-md text-base leading-8 text-slate-600">
-                  Entrepreneur and business leader driving Anjana Aim India Company with a practical focus on project
-                  delivery, dependable support, and long-term business growth across infrastructure and energy sectors.
+                  Entrepreneur and business leader associated with Anjanaaim India Pvt. Ltd., Bhopal Basseel Company,
+                  A2Z LLP, A12 International LLP, Author Selin Buss Company, and Bharat Jan Kalyan Yojna.
                 </p>
                 <div className="mt-6 rounded-[1.5rem] bg-slate-50 p-5">
                   <span className="rounded-full bg-amber-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)]">
                     Leadership Highlights
                   </span>
                   <ul className="mt-4 space-y-4 text-sm leading-7 text-slate-600">
-                    <li>Strong entrepreneurial approach to business development and execution support.</li>
+                    <li>Multi-sector business profile across infrastructure, trading, food products, and services.</li>
                     <li>Focus on reliable partnerships, project readiness, and disciplined coordination.</li>
-                    <li>Commitment to quality service and expanding capability across multiple sectors.</li>
+                    <li>New India focused vision combining business growth with socially conscious initiatives.</li>
                   </ul>
                 </div>
               </div>

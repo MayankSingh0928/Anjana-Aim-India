@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { Footer } from "./components/Footer";
 import { FloatingActions } from "./components/FloatingActions";
-import { AboutSection } from "./components/AboutSection";
 import { Icon } from "./components/Icon";
 import { Navbar } from "./components/Navbar";
 import { Reveal } from "./components/Reveal";
@@ -49,7 +48,261 @@ const faqItems = [
     answer:
       "Yes. We support wind and solar project requirements through execution assistance, land-related coordination, and project support services.",
   },
+  {
+    question: "Who leads Anjana Aim India Company?",
+    answer:
+      "Anjana Aim India Company is led by Ishwar Singh Anjana, an entrepreneur associated with ventures across infrastructure support, material trading, food products, digital services, and socially conscious retail initiatives.",
+  },
+  {
+    question: "What other ventures are associated with Ishwar Singh Anjana?",
+    answer:
+      "His wider profile includes Anjanaaim India Pvt. Ltd., Bhopal Basseel Company, A2Z LLP, A12 International LLP, Author Selin Buss Company, and the Bharat Jan Kalyan Yojna initiative.",
+  },
 ];
+
+const siteName = "Anjana Aim India Company";
+const defaultSeoDescription =
+  "Anjana Aim India Company, led by entrepreneur Ishwar Singh Anjana, provides construction support, rod supply, land development, electric pole work, renewable energy project support, and labor contracting in Madhya Pradesh.";
+
+const defaultKeywords = [
+  "Anjana Aim India Company",
+  "construction company in Mandsaur",
+  "land development Madhya Pradesh",
+  "rod supply contractor",
+  "solar project support",
+  "wind project support",
+  "electric pole contractor",
+  "labor contractor",
+  "infrastructure company",
+  "Ishwar Singh Anjana",
+  "Bhopal Basseel Company",
+  "Bharat Jan Kalyan Yojna",
+];
+
+function absoluteUrl(path = "/") {
+  if (/^https?:\/\//i.test(path)) {
+    return path;
+  }
+
+  const origin = window.location.origin;
+  return `${origin}${path.startsWith("/") ? path : `/${path}`}`;
+}
+
+function updateMetaAttribute(attribute, key, content) {
+  if (!content) {
+    return;
+  }
+
+  let element = document.head.querySelector(`meta[${attribute}="${key}"]`);
+
+  if (!element) {
+    element = document.createElement("meta");
+    element.setAttribute(attribute, key);
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute("content", content);
+}
+
+function updateCanonical(url) {
+  let canonical = document.head.querySelector('link[rel="canonical"]');
+
+  if (!canonical) {
+    canonical = document.createElement("link");
+    canonical.setAttribute("rel", "canonical");
+    document.head.appendChild(canonical);
+  }
+
+  canonical.setAttribute("href", url);
+}
+
+function updateStructuredData(schema) {
+  const scriptId = "route-seo-schema";
+  let script = document.getElementById(scriptId);
+
+  if (!script) {
+    script = document.createElement("script");
+    script.id = scriptId;
+    script.type = "application/ld+json";
+    document.head.appendChild(script);
+  }
+
+  script.textContent = JSON.stringify(schema);
+}
+
+function buildLocalBusinessSchema(canonicalUrl) {
+  return {
+    "@type": ["LocalBusiness", "ConstructionBusiness"],
+    "@id": `${canonicalUrl}#localbusiness`,
+    name: siteName,
+    image: absoluteUrl("/assets/aim-logo.webp"),
+    logo: absoluteUrl("/assets/aim-logo.webp"),
+    url: canonicalUrl,
+    telephone: "+918120228066",
+    email: "ishuanjana1@gmail.com",
+    taxID: "23BUSPA3622H3ZT",
+    founder: {
+      "@type": "Person",
+      name: "Ishwar Singh Anjana",
+      jobTitle: "Founder and Managing Director",
+      description:
+        "Entrepreneur associated with Anjanaaim India Pvt. Ltd., infrastructure support, material trading, digital services, and social retail initiatives.",
+      knowsAbout: ["Infrastructure support", "Material import-export", "Food products", "Digital services", "Renewable energy support"],
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Nahargarh Road, Near Primary School, Maliya Kherkheda",
+      addressLocality: "Mandsaur",
+      addressRegion: "Madhya Pradesh",
+      postalCode: "458895",
+      addressCountry: "IN",
+    },
+    areaServed: ["Madhya Pradesh", "Chhattisgarh", "Maharashtra", "India"],
+    serviceType: services.map((service) => service.title),
+  };
+}
+
+function getRouteSeo({ currentPath, isAboutPage, isFaqPage, isPrivacyPage, selectedService, selectedProject }) {
+  if (selectedService) {
+    return {
+      title: `${siteName} ${selectedService.title} Services | Madhya Pradesh`,
+      description: `${selectedService.summary} Contact Anjana Aim India Company for ${selectedService.title.toLowerCase()} support in Mandsaur, Madhya Pradesh and project locations across India.`,
+      image: selectedService.heroImage || selectedService.detailShowcase?.featureImage || "/assets/aim-logo.webp",
+      keywords: [
+        `${selectedService.title} services`,
+        `${selectedService.title} contractor Madhya Pradesh`,
+        `${selectedService.title} support Mandsaur`,
+        ...defaultKeywords,
+      ],
+      schemaType: "Service",
+      schemaName: selectedService.title,
+      schemaDescription: selectedService.summary,
+    };
+  }
+
+  if (selectedProject) {
+    return {
+      title: `${siteName} ${selectedProject.title} | Project Support`,
+      description: selectedProject.description,
+      image: selectedProject.image,
+      keywords: [
+        selectedProject.title,
+        selectedProject.category,
+        "infrastructure project support",
+        "renewable energy project support",
+        ...defaultKeywords,
+      ],
+      schemaType: "CreativeWork",
+      schemaName: selectedProject.title,
+      schemaDescription: selectedProject.summary,
+    };
+  }
+
+  if (isAboutPage) {
+    return {
+      title: `About Ishwar Singh Anjana & ${siteName} | Entrepreneur Profile`,
+      description:
+        "Learn about Ishwar Singh Anjana, entrepreneur and founder associated with Anjanaaim India Pvt. Ltd., Bhopal Basseel Company, A2Z LLP, A12 International LLP, Author Selin Buss Company, Bharat Jan Kalyan Yojna, and Anjana Aim India Company.",
+      image: "/assets/owner4.png",
+      keywords: ["about Anjana Aim India Company", "Ishwar Singh Anjana", "Anjanaaim India Pvt Ltd", "Bhopal Basseel Company", ...defaultKeywords],
+    };
+  }
+
+  if (isFaqPage) {
+    return {
+      title: `${siteName} FAQ | Services, Projects & Contact`,
+      description:
+        "Find answers about Anjana Aim India Company's construction, land development, renewable energy, rod supply, electric pole, and labor contracting services.",
+      image: "/assets/aim-logo.webp",
+      keywords: ["Anjana Aim India FAQ", "construction services FAQ", ...defaultKeywords],
+      faqSchema: true,
+    };
+  }
+
+  if (isPrivacyPage) {
+    return {
+      title: `${siteName} Privacy Policy`,
+      description:
+        "Privacy policy for Anjana Aim India Company, including how inquiry information is used for business communication and project support requests.",
+      image: "/assets/aim-logo.webp",
+      keywords: ["Anjana Aim India privacy policy", ...defaultKeywords],
+    };
+  }
+
+  return {
+    title: `${siteName} | Construction, Land Development & Renewable Energy Support`,
+    description: defaultSeoDescription,
+    image: "/assets/infrastructure.webp",
+    keywords: defaultKeywords,
+    schemaType: "WebSite",
+    schemaName: siteName,
+    schemaDescription: defaultSeoDescription,
+  };
+}
+
+function applySeo(seo, currentPath) {
+  const canonicalUrl = absoluteUrl(currentPath);
+  const imageUrl = absoluteUrl(seo.image || "/assets/aim-logo.webp");
+
+  document.title = seo.title;
+  updateMetaAttribute("name", "description", seo.description);
+  updateMetaAttribute("name", "keywords", seo.keywords.join(", "));
+  updateMetaAttribute("name", "robots", "index, follow, max-image-preview:large");
+  updateMetaAttribute("property", "og:type", "website");
+  updateMetaAttribute("property", "og:site_name", siteName);
+  updateMetaAttribute("property", "og:title", seo.title);
+  updateMetaAttribute("property", "og:description", seo.description);
+  updateMetaAttribute("property", "og:url", canonicalUrl);
+  updateMetaAttribute("property", "og:image", imageUrl);
+  updateMetaAttribute("property", "og:locale", "en_IN");
+  updateMetaAttribute("name", "twitter:card", "summary_large_image");
+  updateMetaAttribute("name", "twitter:title", seo.title);
+  updateMetaAttribute("name", "twitter:description", seo.description);
+  updateMetaAttribute("name", "twitter:image", imageUrl);
+  updateCanonical(canonicalUrl);
+
+  const graph = [
+    buildLocalBusinessSchema(canonicalUrl),
+    {
+      "@type": seo.schemaType || "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      name: seo.schemaName || seo.title,
+      description: seo.schemaDescription || seo.description,
+      url: canonicalUrl,
+      image: imageUrl,
+      isPartOf: {
+        "@type": "WebSite",
+        name: siteName,
+        url: absoluteUrl("/"),
+      },
+    },
+  ];
+
+  if (seo.schemaType === "Service") {
+    graph[1].provider = { "@id": `${canonicalUrl}#localbusiness` };
+    graph[1].areaServed = ["Madhya Pradesh", "India"];
+  }
+
+  if (seo.faqSchema) {
+    graph.push({
+      "@type": "FAQPage",
+      "@id": `${canonicalUrl}#faq`,
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    });
+  }
+
+  updateStructuredData({
+    "@context": "https://schema.org",
+    "@graph": graph,
+  });
+}
 
 function getContactHref(serviceSlug) {
   return `/?service=${encodeURIComponent(serviceSlug)}#contact`;
@@ -86,18 +339,18 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
         <div className="hero-grid absolute inset-0 opacity-20" aria-hidden="true" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(245,158,11,0.08),_transparent_26%),radial-gradient(circle_at_bottom_right,_rgba(30,64,175,0.08),_transparent_36%)]" />
 
-        <div className="relative mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8 lg:py-24">
+        <div className="home-hero-layout relative mx-auto grid min-h-[calc(100vh-5rem)] max-w-7xl items-center gap-14 px-4 py-20 sm:px-6 lg:grid-cols-[1.2fr_0.8fr] lg:px-8 lg:py-24">
           <Reveal className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/75 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--accent)] shadow-sm">
               <span className="h-2 w-2 rounded-full bg-[color:var(--accent)]" />
               Infrastructure • Construction • Energy
             </span>
             <h1 className="mt-7 font-heading text-5xl font-semibold leading-tight tracking-tight text-[color:var(--primary)] sm:text-6xl">
-              Building Infrastructure for a Stronger Tomorrow
+              Anjana Aim India Company: Building Infrastructure for a Stronger Tomorrow
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600">
-              Trusted partner in construction, rod supply, land development, wind projects, solar projects, and labor
-              contracting for ambitious industrial and infrastructure work.
+              Led by entrepreneur Ishwar Singh Anjana, we support construction, rod supply, land development, electric
+              pole work, renewable energy projects, and labor contracting for ambitious infrastructure work.
             </p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a href="/#services" className="btn-primary">
@@ -109,8 +362,8 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
             </div>
             <div className="mt-12 grid gap-4 sm:grid-cols-3">
               {[
-                "Corporate discipline for on-ground execution",
-                "Strong support across multi-sector project needs",
+                "Founder-led discipline for on-ground execution",
+                "Multi-sector profile across infrastructure, trading, food products, and services",
                 "Professional delivery with dependable workforce coordination",
               ].map((item) => (
                 <div key={item} className="rounded-2xl border border-[color:var(--border)] bg-white/80 p-4 shadow-sm">
@@ -146,10 +399,10 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
 
                   <div className="mt-8 grid gap-4 sm:grid-cols-2">
                     {[
-                      { title: "Core Strength", detail: "Construction & project support" },
-                      { title: "Capability", detail: "Renewable & development works" },
-                      { title: "Approach", detail: "Quality, timing, accountability" },
-                      { title: "Base", detail: "Mandsaur, Madhya Pradesh" },
+                      { title: "Leadership", detail: "Ishwar Singh Anjana" },
+                      { title: "Core Strength", detail: "Infrastructure & project support" },
+                      { title: "Wider Ventures", detail: "Trading, food products & digital services" },
+                      { title: "Mission", detail: "New India focused growth" },
                     ].map((item) => (
                       <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-4">
                         <p className="text-sm uppercase tracking-[0.24em] text-amber-300">{item.title}</p>
@@ -337,6 +590,13 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
                       <h3 className="font-heading text-2xl font-semibold text-[color:var(--primary)]">{project.title}</h3>
                     </div>
                     <p className="mt-4 text-base leading-7 text-slate-600">{project.description}</p>
+                    <a
+                      href={`/project/${project.slug}`}
+                      className="mt-6 flex items-center gap-2 text-sm font-semibold text-[color:var(--accent)] transition hover:gap-3"
+                    >
+                      <span>View project details</span>
+                      <Icon name="arrow" className="h-4 w-4" />
+                    </a>
                   </div>
                 </article>
               </Reveal>
@@ -586,25 +846,163 @@ function HomePage({ onInquirySubmit, selectedServiceSlug }) {
 }
 
 function AboutPage() {
+  const founderAchievements = [
+    "Managing Director of Anjanaaim India Pvt. Ltd., incorporated in December 2020 and associated with food product manufacturing.",
+    "Owner and driver of Bhopal Basseel Company, described as a flagship material import-export venture focused on top-grade materials.",
+    "Associated with A2Z LLP, A12 International LLP, Author Selin Buss Company, and Bharat Jan Kalyan Yojna.",
+  ];
+
+  const aboutPillars = [
+    {
+      title: "Entrepreneurial Direction",
+      description: "A diversified business profile spanning infrastructure support, material trading, food products, and service ventures.",
+    },
+    {
+      title: "Multi-Sector Reach",
+      description: "Support across construction, rods, land development, renewable projects, electric poles, labor, trading, and digital services.",
+    },
+    {
+      title: "New India Mission",
+      description: "A growth-focused outlook that combines business expansion with practical service delivery and social retail initiatives.",
+    },
+  ];
+
+  const founderVentures = [
+    {
+      title: "Anjanaaim India Pvt. Ltd.",
+      description: "A Bhopal-headquartered company incorporated in December 2020 and associated with food product manufacturing.",
+    },
+    {
+      title: "Bhopal Basseel Company",
+      description: "Flagship material import-export venture focused on top-grade materials and growth-oriented trading.",
+    },
+    {
+      title: "A2Z LLP & A12 International LLP",
+      description: "Trading and service-oriented firms connected with a wider multi-sector business profile.",
+    },
+    {
+      title: "Author Selin Buss Company",
+      description: "Specialized venture focused on software development, travel services, and digital solutions.",
+    },
+    {
+      title: "Bharat Jan Kalyan Yojna",
+      description: "Mission-driven initiative focused on affordable, quality grocery access for lower-middle-class households and farmers.",
+    },
+  ];
+
   return (
     <main>
-      <section className="relative overflow-hidden border-b border-[color:var(--border)] bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(244,239,230,0.75))]">
+      <section className="relative overflow-hidden border-b border-[color:var(--border)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(245,247,251,0.94))]">
         <div className="hero-grid absolute inset-0 opacity-10" aria-hidden="true" />
-        <div className="mx-auto max-w-7xl px-4 py-20 text-center sm:px-6 lg:px-8 lg:py-24">
-          <span className="inline-flex rounded-full border border-[#eadfce] bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)]">
-            Company Profile
-          </span>
-          <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-[color:var(--primary)] sm:text-5xl">
-            About Anjana Aim India Company
-          </h1>
-          <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
-            Learn more about our business vision, multi-sector capabilities, and the leadership driving dependable
-            execution across infrastructure, land development, renewable energy, and construction support.
-          </p>
+        <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.13),transparent_34%)] lg:block" aria-hidden="true" />
+
+        <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8 lg:py-24">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/70 bg-white p-3 shadow-[0_28px_80px_rgba(15,23,42,0.14)]">
+              <img
+                src="/assets/owner4.png"
+                alt="Ishwar Singh Anjana founder profile visual"
+                className="h-auto w-full rounded-[1.5rem] object-contain"
+              />
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div>
+              <span className="inline-flex rounded-full bg-amber-50 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--accent)]">
+                Meet Our Founder & CEO
+              </span>
+              <h1 className="mt-5 font-heading text-4xl font-semibold tracking-tight text-[color:var(--primary)] sm:text-5xl">
+                Ishwar Singh Anjana
+              </h1>
+              <p className="mt-6 text-base leading-8 text-slate-600 sm:text-lg">
+                Ishwar Singh Anjana is an entrepreneur associated with multiple ventures centered around Bhopal and
+                Madhya Pradesh. His profile spans Anjanaaim India Pvt. Ltd., material import-export through Bhopal
+                Basseel Company, trading and service firms, digital solutions, and the Bharat Jan Kalyan Yojna
+                initiative. Anjana Aim India Company reflects that same practical growth mindset through infrastructure,
+                land, power, renewable, material, and workforce support.
+              </p>
+
+              <blockquote className="mt-8 border-l-4 border-[color:var(--accent)] bg-white/80 py-4 pl-5 text-base italic leading-8 text-slate-700 shadow-[0_14px_35px_rgba(15,23,42,0.04)]">
+                Bharat Jan Kalyan Yojna is presented as a mission rooted in compassion, affordability, and upliftment,
+                with a focus on delivering quality grocery items at fair prices to families who need them most.
+              </blockquote>
+
+              <div className="mt-8">
+                <h2 className="font-heading text-2xl font-semibold text-[color:var(--primary)]">
+                  Achievements & Recognition
+                </h2>
+                <ul className="mt-5 grid gap-4">
+                  {founderAchievements.map((item) => (
+                    <li key={item} className="flex gap-3 text-base leading-7 text-slate-600">
+                      <Icon name="shield" className="mt-1 h-5 w-5 shrink-0 text-[color:var(--accent)]" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      <AboutSection standalone />
+      <section className="section-shell bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionIntro
+              eyebrow="Company Direction"
+              title="Built around execution, trust, and project readiness"
+              description="Anjana Aim India Company combines leadership focus, site-level coordination, and practical business support for clients across infrastructure and energy-linked work."
+              centered
+            />
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {aboutPillars.map((item, index) => (
+              <Reveal key={item.title} delay={index * 80}>
+                <article className="h-full rounded-[1.75rem] border border-[color:var(--border)] bg-[linear-gradient(180deg,#ffffff,#f8fafc)] p-7 shadow-[0_20px_55px_rgba(15,23,42,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.12)]">
+                  <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-50 text-[color:var(--accent)]">
+                    <Icon name="project" className="h-6 w-6" />
+                  </span>
+                  <h3 className="mt-6 font-heading text-2xl font-semibold text-[color:var(--primary)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-slate-600">{item.description}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell section-tint">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionIntro
+              eyebrow="Ventures & Initiatives"
+              title="A diversified profile across business and social impact"
+              description="The founder profile connects infrastructure execution with material trading, food products, software services, travel services, digital solutions, and mission-led retail access."
+              centered
+            />
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {founderVentures.map((item, index) => (
+              <Reveal key={item.title} delay={index * 70}>
+                <article className="h-full rounded-[1.75rem] border border-[color:var(--border)] bg-white p-7 shadow-[0_20px_55px_rgba(15,23,42,0.07)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(15,23,42,0.12)]">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-50 text-[color:var(--accent)]">
+                    <Icon name="shield" className="h-5 w-5" />
+                  </span>
+                  <h3 className="mt-5 font-heading text-2xl font-semibold text-[color:var(--primary)]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-4 text-base leading-7 text-slate-600">{item.description}</p>
+                </article>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
@@ -619,7 +1017,7 @@ function FaqPage() {
             Support
           </span>
           <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-[color:var(--primary)] sm:text-5xl">
-            Frequently Asked Questions
+            Anjana Aim India Company FAQs
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
             Find quick answers about our services, project capabilities, business coverage, and inquiry process.
@@ -655,7 +1053,7 @@ function PrivacyPolicyPage() {
             Legal
           </span>
           <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-[color:var(--primary)] sm:text-5xl">
-            Privacy Policy
+            Anjana Aim India Company Privacy Policy
           </h1>
           <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">
             Last updated: April 13, 2026
@@ -936,7 +1334,7 @@ function PrivacyPolicyPage() {
               <h2>Contact Us</h2>
               <p>If you have any questions about this Privacy Policy, You can contact us:</p>
               <ul>
-                <li>By email:   info@anjanaaimindia.com</li>
+                <li>By email: ishuanjana1@gmail.com</li>
               </ul>
               <p>Generated using TermsFeed Privacy Policy Generator</p>
             </div>
@@ -985,7 +1383,7 @@ function ServiceDetailPage({ service }) {
               {service.eyebrow}
             </span>
             <h1 className="mt-6 font-heading text-5xl font-semibold tracking-tight text-[color:var(--primary)] sm:text-6xl">
-              {service.title}
+              Anjana Aim {service.title} Services
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{service.summary}</p>
             <div className="mt-9 flex flex-col gap-4 sm:flex-row">
@@ -1327,6 +1725,209 @@ function ServiceDetailPage({ service }) {
   );
 }
 
+function ProjectDetailPage({ project }) {
+  if (!project) {
+    return (
+      <main>
+        <section className="section-shell">
+          <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+            <span className="inline-flex rounded-full border border-[#eadfce] bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)]">
+              Project Not Found
+            </span>
+            <h1 className="mt-6 font-heading text-4xl font-semibold tracking-tight text-[color:var(--primary)]">
+              The requested project page could not be found.
+            </h1>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600">
+              Please return to the projects section and choose one of our available project showcases.
+            </p>
+            <a href="/#projects" className="btn-primary mt-8">
+              View Projects
+            </a>
+          </div>
+        </section>
+      </main>
+    );
+  }
+
+  return (
+    <main>
+      <section className="relative overflow-hidden border-b border-[color:var(--border)] bg-[linear-gradient(180deg,rgba(255,255,255,0.96),rgba(232,237,245,0.78))]">
+        <div className="hero-grid absolute inset-0 opacity-10" aria-hidden="true" />
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:px-8 lg:py-24">
+          <Reveal>
+            <span className="inline-flex rounded-full border border-[#eadfce] bg-white/85 px-4 py-2 text-xs font-semibold uppercase tracking-[0.28em] text-[color:var(--accent)]">
+              {project.eyebrow}
+            </span>
+            <h1 className="mt-6 font-heading text-5xl font-semibold tracking-tight text-[color:var(--primary)] sm:text-6xl">
+              Anjana Aim {project.title}
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-600 sm:text-lg">{project.summary}</p>
+            <div className="mt-9 flex flex-col gap-4 sm:flex-row">
+              <a href="/#contact" className="btn-primary">
+                Discuss Similar Work
+              </a>
+              <a href="/#projects" className="btn-secondary">
+                Back to Projects
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={120}>
+            <div className="overflow-hidden rounded-[2rem] border border-white/70 bg-white p-4 shadow-[0_24px_70px_rgba(15,23,42,0.12)] sm:p-5">
+              <div className="relative overflow-hidden rounded-[1.5rem]">
+                <img src={project.image} alt={project.alt} className="h-96 w-full object-cover" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,23,42,0.04),rgba(15,23,42,0.68))]" />
+                <div className="absolute bottom-5 left-5 right-5">
+                  <span className="inline-flex rounded-full bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--accent)]">
+                    {project.category}
+                  </span>
+                  <h2 className="mt-3 font-heading text-3xl font-semibold text-white">
+                    Document-backed project capability
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="section-shell bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionIntro
+              eyebrow="Project Snapshot"
+              title="Key details understood from the project records"
+              description="A concise public-facing view of scope, location, compliance, and execution signals drawn from the supplied documents."
+              centered
+            />
+          </Reveal>
+
+          <div className="mt-14 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+            {project.facts.map((fact, index) => (
+              <Reveal key={fact.label} delay={index * 70}>
+                <div className="h-full rounded-[1.65rem] border border-[color:var(--border)] bg-[linear-gradient(180deg,#ffffff,#f8fafc)] p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)]">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[color:var(--accent)]">
+                    {fact.label}
+                  </p>
+                  <p className="mt-4 font-heading text-2xl font-semibold leading-tight text-[color:var(--primary)]">
+                    {fact.value}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell section-tint">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8">
+          <Reveal>
+            <SectionIntro
+              eyebrow="Execution Scope"
+              title="What this project page represents"
+              description="The page translates document-level scope into an easy project narrative for clients, contractors, developers, and renewable energy stakeholders."
+            />
+          </Reveal>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {project.highlights.map((item, index) => (
+              <Reveal key={item} delay={index * 70}>
+                <div className="h-full rounded-[1.75rem] border border-[color:var(--border)] bg-white p-6 shadow-[0_18px_45px_rgba(15,23,42,0.06)]">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-amber-50 text-[color:var(--accent)]">
+                    <Icon name="shield" className="h-5 w-5" />
+                  </span>
+                  <p className="mt-5 text-base font-semibold leading-7 text-[color:var(--primary)]">{item}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionIntro
+              eyebrow="Work Flow"
+              title="A practical sequence from planning to completion"
+              description="Each project detail page uses the same clear structure so visitors can quickly understand how the work moves on site."
+              centered
+            />
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {project.process.map((step, index) => (
+              <Reveal key={step} delay={index * 80}>
+                <div className="h-full rounded-[1.75rem] border border-[#eadfce] bg-[#fffaf2] p-6 text-center shadow-[0_18px_45px_rgba(15,23,42,0.05)]">
+                  <p className="font-heading text-5xl font-semibold text-[#d7b48c]/65">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-4 font-heading text-xl font-semibold text-[color:var(--primary)]">{step}</h3>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell bg-slate-950">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-start lg:px-8">
+          <Reveal>
+            <span className="inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-amber-200 shadow-sm">
+              Document Signals
+            </span>
+            <h2 className="mt-5 font-heading text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Details verified from the supplied PDFs
+            </h2>
+            <p className="mt-4 text-base leading-7 text-slate-200 sm:text-lg">
+              The website presents only useful public-facing signals from the documents while keeping personal identifiers,
+              signatures, and raw commercial terms out of the page copy.
+            </p>
+          </Reveal>
+
+          <div className="grid gap-4">
+            {project.documentSignals.map((signal, index) => (
+              <Reveal key={signal} delay={index * 80}>
+                <div className="rounded-[1.5rem] border border-white/10 bg-white/10 p-5 text-white shadow-[0_18px_45px_rgba(0,0,0,0.16)] backdrop-blur-sm">
+                  <div className="flex gap-4">
+                    <span className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-amber-400/18 text-amber-200">
+                      <Icon name="project" className="h-4 w-4" />
+                    </span>
+                    <p className="text-base leading-7 text-slate-100">{signal}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 py-8 sm:px-6 lg:px-8">
+        <Reveal className="mx-auto max-w-7xl">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(13,27,42,1),rgba(30,58,138,0.92))] px-6 py-10 shadow-[0_25px_80px_rgba(15,23,42,0.22)] sm:px-10 lg:px-14 lg:py-14">
+            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-300">Project Inquiry</p>
+                <h2 className="mt-4 font-heading text-3xl font-semibold text-white sm:text-4xl">
+                  Planning work similar to {project.title.toLowerCase()}?
+                </h2>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-slate-200">
+                  Share your requirement and our team will help map the practical next step.
+                </p>
+              </div>
+              <div className="flex lg:justify-end">
+                <a href="/#contact" className="btn-primary btn-primary--light">
+                  Contact Us
+                </a>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+    </main>
+  );
+}
+
 function App() {
   const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER ;
   const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
@@ -1335,7 +1936,22 @@ function App() {
   const isPrivacyPage = currentPath === "/privacy-policy";
   const serviceSlug = currentPath.startsWith("/services/") ? currentPath.replace("/services/", "") : "";
   const selectedService = serviceDetails.find((service) => service.slug === serviceSlug);
+  const projectSlug = currentPath.startsWith("/project/") ? currentPath.replace("/project/", "") : "";
+  const selectedProject = projects.find((project) => project.slug === projectSlug);
   const selectedInquiryService = new URLSearchParams(window.location.search).get("service") || "";
+
+  useEffect(() => {
+    const seo = getRouteSeo({
+      currentPath,
+      isAboutPage,
+      isFaqPage,
+      isPrivacyPage,
+      selectedService,
+      selectedProject,
+    });
+
+    applySeo(seo, currentPath);
+  }, [currentPath, isAboutPage, isFaqPage, isPrivacyPage, selectedService, selectedProject]);
 
   const handleInquirySubmit = (event) => {
     event.preventDefault();
@@ -1373,6 +1989,8 @@ function App() {
         <PrivacyPolicyPage />
       ) : serviceSlug ? (
         <ServiceDetailPage service={selectedService} />
+      ) : projectSlug ? (
+        <ProjectDetailPage project={selectedProject} />
       ) : (
         <HomePage onInquirySubmit={handleInquirySubmit} selectedServiceSlug={selectedInquiryService} />
       )}

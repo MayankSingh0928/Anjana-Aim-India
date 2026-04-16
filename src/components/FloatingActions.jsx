@@ -16,7 +16,7 @@ export function FloatingActions() {
         href="https://wa.me/918120228066?text=Hello%20Anjana%20Aim%20India%20Company,%20I%20want%20to%20know%20more%20about%20your%20services."
         target="_blank"
         rel="noreferrer"
-        className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-emerald-500/30 transition hover:-translate-y-1 hover:scale-105"
+        className="fixed bottom-4 right-4 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl shadow-emerald-500/30 transition hover:-translate-y-1 hover:scale-105 sm:bottom-5 sm:right-5 sm:h-14 sm:w-14"
         aria-label="Chat on WhatsApp"
       >
         <svg viewBox="0 0 24 24" className="h-7 w-7 fill-current" aria-hidden="true">
@@ -27,7 +27,7 @@ export function FloatingActions() {
       <button
         type="button"
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className={`fixed bottom-24 right-5 z-40 inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[color:var(--primary)] text-white shadow-xl shadow-slate-900/20 transition ${
+        className={`fixed bottom-20 right-4 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[color:var(--primary)] text-white shadow-xl shadow-slate-900/20 transition sm:bottom-24 sm:right-5 sm:h-12 sm:w-12 ${
           showTop ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-5 opacity-0"
         }`}
         aria-label="Scroll to top"

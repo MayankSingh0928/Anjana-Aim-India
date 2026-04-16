@@ -5,20 +5,20 @@ export function Footer() {
     <footer className="bg-[color:var(--primary)] text-white">
       <div className="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
-          <a href="/" className="flex items-center gap-3 transition hover:opacity-90">
+          <a href="/" className="flex min-w-0 items-center gap-3 transition hover:opacity-90">
             <img
               src="/assets/aim-logo.webp"
               alt="Anjana Aim India Company logo"
-              className="h-14 w-14 rounded-full border border-white/15 object-cover"
+              className="h-12 w-12 shrink-0 rounded-full border border-white/15 object-cover sm:h-14 sm:w-14"
             />
-            <div>
-              <p className="font-heading text-xl font-semibold">Anjana Aim India Company</p>
+            <div className="min-w-0">
+              <p className="font-heading text-lg font-semibold leading-tight sm:text-xl">Anjana Aim India Company</p>
               <p className="mt-1 text-sm text-slate-300">Determined to win with dependable execution.</p>
             </div>
           </a>
           <p className="mt-5 text-sm leading-7 text-slate-300">
-            Diversified project support across construction, infrastructure, land development, renewable energy,
-            and labor contracting.
+            Founder-led project support connected with a wider profile across infrastructure, trading, food products,
+            digital services, renewable energy, and labor contracting.
           </p>
         </div>
 
@@ -53,7 +53,7 @@ export function Footer() {
           <ul className="mt-5 space-y-3 text-sm text-slate-300">
             {contactInfo.map((item) => (
               <li key={item.label}>
-                <a href={item.href} className="transition hover:text-white">
+                <a href={item.href} className="break-words transition hover:text-white">
                   {item.value}
                 </a>
               </li>
